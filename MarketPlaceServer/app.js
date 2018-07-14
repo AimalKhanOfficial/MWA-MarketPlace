@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+require('dotenv').config();
 
 require('dotenv').config();
 
@@ -25,12 +27,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -42,4 +44,45 @@ app.use(function(err, req, res, next) {
 
 app.listen(3000, () => {
   console.log("Started!");
+
+  connectToDb();
+
 });
+
+function connectToDb() {
+
+  const conection = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASS}@ds137651.mlab.com:37651/mwadb`;
+  console.log(conection)
+
+  mongoose.connect(conection, { useNewUrlParser: true },()=>
+  {
+
+    console.log("db connected")
+
+  
+  });
+
+
+  var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+    a_string: String,
+    a_date: Date
+});
+
+// Compile model from schema
+var Posts = mongoose.model('Posts', SomeModelSchema );
+
+ 
+  
+  
+  var itemOne = Posts({ a_string: 'myItem' }).save(function (err) {
+
+    if (err) throw err;
+
+    console.log("item Added")
+
+  });
+
+
+}
