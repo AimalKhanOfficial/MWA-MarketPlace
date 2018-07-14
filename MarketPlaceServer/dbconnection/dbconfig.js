@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PWD + '@ds235461.mlab.com:35461/laungfirstdatabase')
+mongoose.connect(process.env.DB_CONNECTION)
 
 var userSchema = new Schema({
     username: { type: String, required: true, unique: true },
