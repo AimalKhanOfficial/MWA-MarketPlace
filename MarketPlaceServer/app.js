@@ -44,45 +44,4 @@ app.use(function (err, req, res, next) {
 
 app.listen(3000, () => {
   console.log("Started!");
-
-  connectToDb();
-
 });
-
-function connectToDb() {
-
-  const conection = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASS}@ds137651.mlab.com:37651/mwadb`;
-  console.log(conection)
-
-  mongoose.connect(conection, { useNewUrlParser: true },()=>
-  {
-
-    console.log("db connected")
-
-  
-  });
-
-
-  var Schema = mongoose.Schema;
-
-var SomeModelSchema = new Schema({
-    a_string: String,
-    a_date: Date
-});
-
-// Compile model from schema
-var Posts = mongoose.model('Posts', SomeModelSchema );
-
- 
-  
-  
-  var itemOne = Posts({ a_string: 'myItem' }).save(function (err) {
-
-    if (err) throw err;
-
-    console.log("item Added")
-
-  });
-
-
-}
