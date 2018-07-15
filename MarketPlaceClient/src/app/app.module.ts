@@ -64,7 +64,8 @@ import { PostsComponent } from './posts/posts.component';
 
 const My_Routes = [
   { path: 'admin', loadChildren: './admin-module/admin-module.module' },
-  { path: 'postcreate', component: PostcreateComponent }
+  { path: 'postcreate', component: PostcreateComponent },
+  { path: 'posts', component: PostsComponent }
 ]
 
 @NgModule({
