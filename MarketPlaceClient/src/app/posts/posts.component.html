@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Owner</th>
+      <th>Posted Date</th> 
+      <th>Price</th>
+      <th>Description</th>
+    </tr>
+ </thead>
+ <tbody>
+    <tr *ngFor = "let post of posts">
+      <td>{{post.title}}</td>
+      <td>{{post.user_name}}</td>
+      <td>{{post.post_date}}</td>
+      <td>{{post.price}}</td>
+      <td>{{post.description}}</td>
+      <td>
+        <button type="button">Update</button>
+        <button type="button">Delete</button>
+      </td>
+    </tr>        
+</tbody>  
+</table>

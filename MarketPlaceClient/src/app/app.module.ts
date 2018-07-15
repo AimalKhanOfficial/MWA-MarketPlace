@@ -59,6 +59,7 @@ import {
 } from '@angular/material';
 import { PostcreateComponent } from './postcreate/postcreate.component';
 import { UserModuleModule } from './user-module/user-module.module';
+import { PostsComponent } from './posts/posts.component';
 
 
 const My_Routes = [
@@ -106,7 +107,7 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [],
+  declarations: [PostsComponent],
   imports: [BrowserAnimationsModule]
 })
 export class DemoMaterialModule { }
