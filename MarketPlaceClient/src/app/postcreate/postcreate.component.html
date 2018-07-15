@@ -1,0 +1,47 @@
+dsfgdsf
+
+<form  (ngSubmit)="onSubmit()">
+  <div formGroupName="userData">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" formControlName="title">
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="text" class="form-control" id="price" formControlName="price">
+    </div>
+    <div class="form-group">
+      <label for="condition">Condition</label>
+      <input type="text" class="form-control" id="condition" formControlName="condition">
+      <!-- <div *ngIf="!myForm.get('userData').get('email').valid">
+        Invalid Email
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input type="text" class="form-control" id="category" formControlName="category">
+    </div>
+    <div class="form-group">
+      <label for="is_New">Is New</label>
+      <input type="text" class="form-control" id="is_New" formControlName="is_New">
+    </div>
+    <div class="form-group">
+      <label for="image_urls">Images</label>
+      <input type="text" class="form-control" id="image_urls" formControlName="image_urls">
+    </div>
+    <div class="form-group">
+      <label for="condition">Condition</label>
+      <input type="text" class="form-control" id="condition" formControlName="condition">
+    </div>
+    <!-- <div class="form-group">
+      <label for="checkterms">
+        <input type="checkbox" id="checkterms" formControlName="checkterms"> I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy.</a>
+      </label>
+    </div> -->
+
+
+  </div>
+
+
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Sign Up</button>
+</form>
