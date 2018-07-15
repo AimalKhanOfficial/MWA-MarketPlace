@@ -4,15 +4,22 @@ import { AppComponent } from './app.component';
 import { AdminModuleModule } from './admin-module/admin-module.module';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+/* Required for Angular Material 
+added by jawad*/
+
+/*------------------------------------ */
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+/*------------------------------------ */
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
+/* Required for Angular Material 
+added by jawad*/
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -98,7 +105,8 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: []
+  declarations: [],
+  imports: [BrowserAnimationsModule]
 })
 export class DemoMaterialModule { }
 

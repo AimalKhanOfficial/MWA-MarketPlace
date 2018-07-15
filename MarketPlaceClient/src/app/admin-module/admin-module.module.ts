@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users/users.component';
 import { ApprovePostsComponent } from './approve-posts/approve-posts.component';
-import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
+
 import { RouterModule } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -47,6 +47,11 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { AdminNavComponent } from './admin-nav/admin-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import 'hammerjs';
+
+
 
 
 @NgModule({
@@ -88,7 +93,8 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-  ]
+  ],
+  declarations: []
 })
 export class DemoMaterialModule { }
 
@@ -97,7 +103,7 @@ export class DemoMaterialModule { }
     BrowserModule,
     CommonModule,
     RouterModule.forChild([
-      { path: 'admin', component: AdminNavigationComponent },
+      { path: 'admin', component: AdminNavComponent },
       { path: 'users', component: UsersComponent },
       { path: 'approvePosts', component: ApprovePostsComponent }
     ]),
@@ -105,9 +111,10 @@ export class DemoMaterialModule { }
     DemoMaterialModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
   ],
-  declarations: [UsersComponent, ApprovePostsComponent, AdminNavigationComponent],
-  bootstrap: [AdminNavigationComponent]
+  declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent],
+  bootstrap: [AdminNavComponent]
 })
 export class AdminModuleModule { }
