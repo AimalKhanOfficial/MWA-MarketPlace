@@ -5,6 +5,7 @@ var connection = require('../dbconnection/dbconfig');
 const { from } = require('rxjs');
 const { filter } = require('rxjs/operators');
 var utilities = require('../utilities/HelperUtilities');
+var jwt = require('jsonwebtoken');
 
 //We need this middle ware to check for authorization token (Aimal)
 router.use('/protected', (req, res, next) => {
@@ -40,8 +41,36 @@ router.get("/:email", (req, res, next) => {
   });
 });
 
+//Login Method - Works Fine! Aimal
+router.post("/login", [
+  check('email').exists().withMessage("provide email"),
+  check('email').isEmail().withMessage("provide valid email"),
+  check('password').exists().withMessage("provide password")
+], (req, res, next) => {
+  //For Validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.mapped() });
+  }
+  console.log(process.env.JWT_PRIVATE)
+  connection.User.find({ email: req.body.email, passWord: req.body.password }, function (err, user) {
+    if (user.length > 0) {
+      return res.json({
+        auth: true,
+        token: jwt.sign(user[0].toJSON(), process.env.JWT_PRIVATE)
+      });
+    }
+    else {
+      return res.json({
+        auth: false,
+        token: jwt.sign("NoUserFound", process.env.JWT_PRIVATE)
+      });
+    }
+  });
+});
+
 //Registration method completed - Aimal
-router.post("/", [
+router.post("/register", [
   check('userName').exists().withMessage("provide username"),
   check('passWord').exists().withMessage("provide password"),
   check('email').exists().withMessage("provide email"),
@@ -58,7 +87,7 @@ router.post("/", [
 
   var newUser = new connection.User({
     userName: req.body.userName,
-    passWord: req.body.userName,
+    passWord: req.body.passWord,
     role: 0,
     email: req.body.email,
     isVerified: 0,
