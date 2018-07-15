@@ -96,13 +96,14 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [PostcreateComponent]
+  declarations: []
 })
 export class DemoMaterialModule { }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostcreateComponent
   ],
   imports: [
     BrowserModule,
