@@ -6,8 +6,9 @@ module.exports.generateVerificationCode = () => {
     return Math.floor(Math.random() * 90000) + 10000;
 }
 
-module.exports.sendMail = function (toParam, subjectParam, textParam) {
+module.exports.sendMail = function (toParam, subjectParam, bodyParam) {
     //settings for email
+    console.log("Inside email sending method!");
     console.log(toParam);
 
     var smtpTransport = nodemailer.createTransport({
@@ -23,11 +24,10 @@ module.exports.sendMail = function (toParam, subjectParam, textParam) {
 
     // setup e-mail data with unicode symbols
     var mailOptions = {
-        from: "Fred Foo ✔ <foo@blurdybloop.com>", // sender address
-        to: "aimalkhanofficial@gmail.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world ✔", // plaintext body
-        html: "<b>Hello world ✔</b>" // html body
+        from: "MarketPlace ✔ <sms.mum.mpp@gmail.com>", // sender address
+        to: toParam, // list of receivers
+        subject: subjectParam, // Subject line
+        html: bodyParam // html body
     }
 
     // send mail with defined transport object

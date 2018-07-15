@@ -1,16 +1,10 @@
 var express = require('express');
 var router = express.Router();
 const { check, validationResult } = require('express-validator/check');
-var Connection = require('../dbconnection/dbconfig');
+var connection = require('../dbconnection/dbconfig');
 const { from } = require('rxjs');
 const { filter } = require('rxjs/operators');
 var utilities = require('../utilities/HelperUtilities');
-
-//Testing sending mail - Works (Aimal)
-router.get("/", (req, res, next) => {
-  console.log("1")
-  res.json(utilities.sendMail('aimalkhanofficial@gmail.com', 'test', utilities.generateVerificationCode()));
-});
 
 //We need this middle ware to check for authorization token (Aimal)
 router.use('/protected', (req, res, next) => {
@@ -33,11 +27,23 @@ router.use('/protected', (req, res, next) => {
   }
 });
 
-//Incomplete registration method (Aimal)
-router.post("/register", [
+router.get("/:email", (req, res, next) => {
+  var users = connection.User.find({}, function (err, users) {
+    from(users)
+      .pipe(
+        filter(singleUser => singleUser.email === req.params.email)
+      )
+      .subscribe(singleUser => {
+        return res.json("true");
+      });
+    return res.json("false");
+  });
+});
+
+//Registration method completed - Aimal
+router.post("/", [
   check('userName').exists().withMessage("provide username"),
   check('passWord').exists().withMessage("provide password"),
-  check('role').exists().withMessage("provide role"),
   check('email').exists().withMessage("provide email"),
   check('email').isEmail().withMessage("provide valid email"),
   check('contactNumber').exists().withMessage("provide contactNumber")
@@ -50,48 +56,32 @@ router.post("/register", [
 
   var verificationCode = utilities.generateVerificationCode();
 
-  var newUser = new Connection.User({
+  var newUser = new connection.User({
     userName: req.body.userName,
     passWord: req.body.userName,
-    role: req.body.role,
+    role: 0,
     email: req.body.email,
-    // location: {
-    //     s_type: String,
-    //     coordinates: [Number]
-    // },
-    isVerified: Number,
+    isVerified: 0,
     verificationCode: verificationCode,
     contactNumber: req.body.contactNumber,
     createdAt: Date.now(),
     updatedAt: Date.now()
   });
 
-  res.status(200).json("Registration Successful!");
-});
+  console.log(newUser);
 
-
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  // res.send('respond with a resource');
-  // var newPost = new Connection.Post({
-  //   title: 'Car',
-  //   description: 'String',
-  //   post_date: new Date,
-  //   last_updated: new Date,
-  //   price: 22,
-  //   status: 2,
-  //   condition: 2,
-  //   category:  2,
-  //   location: {
-  //     s_type: 'dfdf',
-  //     coordinates: [98.2323232, 92.11121]
-  //     }
-  // })
-  // newPost.save(function(err){
-  //   if(err) throw err;
-  //   res.json("Success");
-  // })
-  res.json("Hey");
+  newUser.save(function (err) {
+    if (err) {
+      console.log(err);
+      res.status(500).json("Something went wrong, please try again later!");
+    }
+    else {
+      utilities.sendMail(req.body.email, "Registration Successful", `
+        Hey there ${req.body.userName} <br/>
+          Use ${verificationCode} to verify your account!`);
+      res.status(200).json("Registration successful!");
+    }
+  });
 });
 
 module.exports = router;

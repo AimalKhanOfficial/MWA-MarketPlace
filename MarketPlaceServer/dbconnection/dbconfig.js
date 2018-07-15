@@ -5,12 +5,9 @@ mongoose.connect(process.env.DB_CONNECTION)
 var userSchema = new Schema({
     userName: String,
     passWord: String,
+    //Role: 0 (User), 1 (Admin)
     role: Number,
     email: String,
-    // location: {
-    //     s_type: String,
-    //     coordinates: [Number]
-    // },
     isVerified: Number,
     verificationCode: Number,
     contactNumber: String,
