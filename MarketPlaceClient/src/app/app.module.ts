@@ -58,6 +58,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { PostcreateComponent } from './postcreate/postcreate.component';
+import { UserModuleModule } from './user-module/user-module.module';
 
 
 const My_Routes = [
@@ -126,7 +127,8 @@ export class DemoMaterialModule { }
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    UserModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

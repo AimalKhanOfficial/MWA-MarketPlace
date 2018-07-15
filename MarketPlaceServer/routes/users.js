@@ -63,7 +63,7 @@ router.post("/login", [
     else {
       return res.json({
         auth: false,
-        token: jwt.sign("NoUserFound", process.env.JWT_PRIVATE)
+        token: jwt.sign({ res: "NoUserFound" }, process.env.JWT_PRIVATE)
       });
     }
   });

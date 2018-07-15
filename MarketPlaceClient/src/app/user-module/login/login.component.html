@@ -1,0 +1,27 @@
+<br/>
+<br/>
+<div style="text-align: center">
+  <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+
+    <input formControlName="email" placeholder="email" type="text" />
+    <span style="color: red">
+      *
+    </span>
+    <span style="color: red" *ngIf="!this.loginFormGroup.get('email').valid && this.loginFormGroup.get('email').touched">
+      <br/> Invalid Email
+    </span>
+    <br/>
+    <br/>
+    <input formControlName="password" placeholder="password" type="password" />
+    <span style="color: red">
+      *
+    </span>
+    <br/>
+    <br/>
+    <input type="submit" value="Login" [disabled]="!this.loginFormGroup.valid" />
+    <span *ngIf="loginRes!=''" style="color: red">
+      <br/>
+      <br/> {{loginRes}}
+    </span>
+  </form>
+</div>
