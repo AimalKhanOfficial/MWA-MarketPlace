@@ -3,18 +3,16 @@ var Schema = mongoose.Schema;
 mongoose.connect(process.env.DB_CONNECTION)
 
 var userSchema = new Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    userName: String,
+    passWord: String,
+    //Role: 0 (User), 1 (Admin)
     role: Number,
     email: String,
-    location: {
-        s_type: String,
-        coordinates: [Number]
-    },
-    verify: Number,
-    contact_number: String,
-    create_date: Date,
-    last_updated: Date
+    isVerified: Number,
+    verificationCode: Number,
+    contactNumber: String,
+    createdAt: Date,
+    updatedAt: Date
 });
 var User = mongoose.model('User', userSchema);
 
