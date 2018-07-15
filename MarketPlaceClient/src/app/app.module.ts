@@ -9,11 +9,10 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 <<<<<<< HEAD
+
 import { BrowserModule } from '@angular/platform-browser';
 
-=======
 import { ReactiveFormsModule } from '@angular/forms';
->>>>>>> c3ef5a7d2ac5e279b60e3f1b2085711dd3768921
 
 import {
   MatAutocompleteModule,
@@ -56,9 +55,8 @@ import { PostcreateComponent } from './postcreate/postcreate.component';
 
 
 const My_Routes = [
-  { path: 'admin', loadChildren: './admin-module/admin-module.module' }
   { path: 'admin', loadChildren: './admin-module/admin-module.module' },
-  { path: 'postcreate', component:PostcreateComponent}
+  { path: 'postcreate', component: PostcreateComponent }
 ]
 
 @NgModule({
@@ -121,7 +119,7 @@ export class DemoMaterialModule { }
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
