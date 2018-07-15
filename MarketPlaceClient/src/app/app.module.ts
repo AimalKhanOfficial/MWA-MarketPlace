@@ -48,10 +48,12 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { PostcreateComponent } from './postcreate/postcreate.component';
 
 
 const My_Routes = [
-  { path: 'admin', loadChildren: './admin-module/admin-module.module' }
+  { path: 'admin', loadChildren: './admin-module/admin-module.module' },
+  { path: 'postcreate', component:PostcreateComponent}
 ]
 
 @NgModule({
@@ -93,7 +95,8 @@ const My_Routes = [
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-  ]
+  ],
+  declarations: [PostcreateComponent]
 })
 export class DemoMaterialModule { }
 
