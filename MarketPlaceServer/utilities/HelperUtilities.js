@@ -15,9 +15,9 @@ module.exports.sendMail = function (toParam, subjectParam, textParam) {
         auth: {
             type: 'OAuth2',
             user: 'sms.mum.mpp@gmail.com',
-            clientId: '399906134205-5jfp5f1kh1qsrhsupci9ibelruf8ti3o.apps.googleusercontent.com',
-            clientSecret: '9poeW76ZAklmLlVSGW4c7Lsz', 
-            refreshToken : '1/j-UdNbImO4hsvSgG6lsr0XqwrUKn0h00M7Rpa3tVysI'
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET_KEY, 
+            refreshToken : process.env.CLIENT_ACCESSTOKEN
         }
     });
 
