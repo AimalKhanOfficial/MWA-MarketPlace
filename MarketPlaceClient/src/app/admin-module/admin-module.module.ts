@@ -50,6 +50,7 @@ import {
 import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import 'hammerjs';
+import { MainAdminComponent } from './main-admin/main-admin.component';
 
 
 
@@ -103,9 +104,14 @@ export class DemoMaterialModule { }
     BrowserModule,
     CommonModule,
     RouterModule.forChild([
-      { path: 'admin', component: AdminNavComponent },
-      { path: 'users', component: UsersComponent },
-      { path: 'approvePosts', component: ApprovePostsComponent }
+      { path: 'admin', component: MainAdminComponent },
+      {
+        path: 'admin', component: MainAdminComponent,
+        children: [
+          { path: 'users', component: UsersComponent },
+          { path: 'approvePosts', component: ApprovePostsComponent }]
+
+      },
     ]),
     NoopAnimationsModule,
     DemoMaterialModule,
@@ -114,7 +120,7 @@ export class DemoMaterialModule { }
     MatButtonModule,
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
   ],
-  declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent],
-  bootstrap: [AdminNavComponent]
+  declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent],
+  bootstrap: [MainAdminComponent]
 })
 export class AdminModuleModule { }
