@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { store } from '../../redux-store/store';
 import { onUserLogin } from '../../redux-store/actions/loginAction';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   loginRes = "";
 
   loginFormGroup: FormGroup;
-  constructor(private fb: FormBuilder, private http: HttpClient, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private loginService: LoginService, private router: Router) {
     this.loginFormGroup = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]
@@ -35,12 +36,16 @@ export class LoginComponent implements OnInit {
       } else {
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(JSON.stringify(res.token));
-        
+
         //Aimal Khan
         //Storing the token for communication with API
         localStorage.setItem('jwToken', res.token);
         //Setting the details logged in user
         store.dispatch(onUserLogin(decodedToken));
+        if (decodedToken.isVerified == 0) {
+          this.router.navigate(['verifyUser']);
+        }
+
         //We can fetch the state of a logged in user by:
         //console.log(store.getState().userReducer);
       }

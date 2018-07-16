@@ -65,6 +65,21 @@ router.get("/recoverPassword/:email", (req, res, next) => {
   });
 });
 
+router.get("/verifyUser/:email", (req, res, next) => {
+
+  var newPassword = utilities.generateVerificationCode();
+
+  var users = connection.User.update({ email: req.params.email }, { $set: { isVerified: 1 } }, function (err, users) {
+    if (err) {
+      console.log(err);
+      res.json("err");
+    }
+    else {
+      res.status(200).json("Verification successful!");
+    }
+  });
+});
+
 //Login Method - Works Fine! Aimal
 router.post("/login", [
   check('email').exists().withMessage("provide email"),

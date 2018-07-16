@@ -1,0 +1,16 @@
+<br/>
+<div style="text-align: center">
+  <form [formGroup]="userVerificationForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="verificationCode" placeholder="5 digit verification Code" />
+    <span style="color: red">
+      *
+    </span>
+    <br/>
+    <br/>
+    <input type="submit" value="Verify me!" [disabled]="!userVerificationForm.valid" />
+    <span *ngIf="verificationStatus!=''">
+      <br/><br/>
+      {{verificationStatus}}
+    </span>
+  </form>
+</div>

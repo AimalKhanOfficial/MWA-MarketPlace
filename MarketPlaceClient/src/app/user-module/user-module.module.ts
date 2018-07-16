@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { VerifyUserComponent } from './verify-user/verify-user.component';
 
 @NgModule({
   imports: [
@@ -16,9 +17,10 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'login/forgetPassword', component: ForgetPasswordComponent }
+      { path: 'login/forgetPassword', component: ForgetPasswordComponent },
+      { path: 'verifyUser', component: VerifyUserComponent }
     ])
   ],
-  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent]
+  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, VerifyUserComponent]
 })
 export class UserModuleModule { }
