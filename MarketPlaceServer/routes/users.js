@@ -30,14 +30,19 @@ router.use('/protected', (req, res, next) => {
 
 router.get("/:email", (req, res, next) => {
   var users = connection.User.find({}, function (err, users) {
+    flag = false;
     from(users)
       .pipe(
         filter(singleUser => singleUser.email === req.params.email)
       )
       .subscribe(singleUser => {
+        flag = true;
         return res.json("true");
       });
-    return res.json("false");
+
+      if(!flag){
+        res.json("false");
+      }
   });
 });
 
