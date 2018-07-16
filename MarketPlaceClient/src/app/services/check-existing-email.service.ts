@@ -10,4 +10,8 @@ export class CheckExistingEmailService {
   checkEmail(http, email) {
     return http.get("http://localhost:3000/users/" + email);
   }
+
+  updatePassword(http, email) {
+    return http.get("http://localhost:3000/users/recoverPassword/" + email);
+  }
 }

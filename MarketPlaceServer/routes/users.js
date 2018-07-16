@@ -40,9 +40,28 @@ router.get("/:email", (req, res, next) => {
         return res.json("true");
       });
 
-      if(!flag){
-        res.json("false");
-      }
+    if (!flag) {
+      res.json("false");
+    }
+  });
+});
+
+//Recover password
+router.get("/recoverPassword/:email", (req, res, next) => {
+
+  var newPassword = utilities.generateVerificationCode();
+
+  var users = connection.User.update({ email: req.params.email }, { $set: { passWord: newPassword } }, function (err, users) {
+    if (err) {
+      console.log(err);
+      res.json("err");
+    }
+    else {
+      utilities.sendMail(req.params.email, "Password Changed", `
+        Hey there, <br/>
+          Use ${newPassword} as your new password to login to Market place!`);
+      res.status(200).json("Password Change successful!");
+    }
   });
 });
 

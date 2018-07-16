@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   imports: [
@@ -14,9 +15,10 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'login/forgetPassword', component: ForgetPasswordComponent }
     ])
   ],
-  declarations: [LoginComponent, RegisterComponent]
+  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent]
 })
 export class UserModuleModule { }

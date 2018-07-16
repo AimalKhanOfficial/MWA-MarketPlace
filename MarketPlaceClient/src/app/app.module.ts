@@ -61,6 +61,7 @@ import {
 import { PostcreateComponent } from './postcreate/postcreate.component';
 import { UserModuleModule } from './user-module/user-module.module';
 import { PostsComponent } from './posts/posts.component';
+import { ForgetPasswordComponent } from './user-module/forget-password/forget-password.component';
 
 
 const My_Routes = [
@@ -130,7 +131,7 @@ export class DemoMaterialModule { }
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     UserModuleModule
   ],
   providers: [],
