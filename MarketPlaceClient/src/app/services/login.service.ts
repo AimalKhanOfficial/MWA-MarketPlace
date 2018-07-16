@@ -1,4 +1,3 @@
-//Aimal Khan
 import { Injectable } from '@angular/core';
 
 

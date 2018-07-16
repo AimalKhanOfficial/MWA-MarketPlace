@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../../services/login.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { store } from '../../redux-store/store';
-import { onUserLogin } from '../../redux-store/actions/loginAction';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +11,7 @@ import { onUserLogin } from '../../redux-store/actions/loginAction';
   providers: [FormBuilder]
 })
 export class LoginComponent implements OnInit {
-
+  
   loginRes = "";
 
   loginFormGroup: FormGroup;
@@ -35,16 +33,8 @@ export class LoginComponent implements OnInit {
       } else {
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(JSON.stringify(res.token));
-        
-        //Storing the token for communication with API
-        localStorage.setItem('jwToken', res.token);
-        
-        //Setting the details logged in user
-        store.dispatch(onUserLogin(decodedToken));
-
-        //We can fetch the state of a logged in user by:
-        //console.log(store.getState().userReducer);
       }
+
     });
   }
 
