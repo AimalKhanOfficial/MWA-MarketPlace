@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PostService } from '../services/PostService';
+import { Fileupload } from '../services/Fileupload';
+
 
 import {
   FormGroup,
@@ -18,10 +20,11 @@ import { map } from 'rxjs/operators';
 })
 export class PostcreateComponent {
   myForm: FormGroup;
+  selectedFile: File;
   conditions = [{ key: 1, value: 'New' }, { key: 2, value: 'Used' }];
   categories = [{ key: 1, value: 'cars' }, { key: 2, value: 'devices' }];
-
-  constructor(private formBuilder: FormBuilder, private postService: PostService) {
+  //status 1-not approved 2-available 3-sold
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload) {
 
 
     this.myForm = formBuilder.group({
@@ -69,6 +72,19 @@ export class PostcreateComponent {
 
       console.log(err)
     });
+  }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+  }
+
+  onUpload() {
+    // upload code goes here
+
+    // const uploadData = new FormData();
+    // uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+
+    this.fileupload.upload(this.selectedFile);
   }
 
   exampleValidator(control: FormControl): { [s: string]: boolean } {

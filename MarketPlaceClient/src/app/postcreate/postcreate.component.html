@@ -1,12 +1,13 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="post-form">
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Title"  formControlName="title">
+    <input matInput placeholder="Title" formControlName="title">
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Price" type="number"  formControlName="price">
+    <input matInput placeholder="Price" type="number" formControlName="price">
+    <span matPrefix>$&nbsp;</span>
   </mat-form-field>
-  <mat-form-field >
+  <mat-form-field>
     <mat-select placeholder="Condition" formControlName="condition">
       <mat-option *ngFor="let cond of conditions" [value]="cond.key">
         {{cond.value}}
@@ -15,23 +16,26 @@
   </mat-form-field>
   <mat-form-field>
     <mat-select placeholder="Category" formControlName="category">
-      <mat-option *ngFor="let ctg of categories" [value]="ctg.key" >
+      <mat-option *ngFor="let ctg of categories" [value]="ctg.key">
         {{ctg.value}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Images"  formControlName="image_urls">
-    </mat-form-field>
-
-  <mat-form-field class="example-full-width">
     <textarea matInput placeholder="Leave a description" formControlName="description"></textarea>
   </mat-form-field>
+  
+  <div class="form-group">
+    <input style="display: none" type="file" (change)="onFileChanged($event)" multiple formControlName="image_urls" #fileInput>
+    <a (click)="fileInput.click();" mat-button>Select images</a>
+    <a (click)="onUpload()" mat-button>Upload!</a>
+  </div>
 
   <div>
+    <label>Item is: </label>
     <mat-radio-group formControlName="is_New">
-      <mat-radio-button value="1" >New</mat-radio-button>
-      <mat-radio-button value="2" >Used</mat-radio-button>
+      <mat-radio-button value="1">New</mat-radio-button>
+      <mat-radio-button value="2">Used</mat-radio-button>
     </mat-radio-group>
   </div>
 
