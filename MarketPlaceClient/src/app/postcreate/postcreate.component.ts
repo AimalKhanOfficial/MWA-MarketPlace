@@ -18,12 +18,15 @@ import { map } from 'rxjs/operators';
 })
 export class PostcreateComponent {
   myForm: FormGroup;
+  conditions=[{key:1,value:'New'},{key:2,value:'Used'}];
+  categories=[{key:1,value:'cars'},{key:2,value:'devices'}];
 
   constructor(private formBuilder: FormBuilder, private postService: PostService) {
 
+
     this.myForm = formBuilder.group({
       'userData': formBuilder.group({
-        'title': ['product', [Validators.required, this.exampleValidator]],
+        'title': ['product', [Validators.required]],
         'price': ['130', [Validators.required]],
         'condition': ['', [
           Validators.required]
