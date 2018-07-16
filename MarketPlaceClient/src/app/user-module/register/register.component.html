@@ -35,7 +35,7 @@
     </span>
     <br/>
     <br/>
-    <input type="submit" [disabled]="!registerationForm.valid" value="Register" />
+    <input type="submit" [disabled]="!registerationForm.valid || !emailExistsFlag" value="Register" />
 
     <br/>
     <span *ngIf="this.registrationStatus!=''">

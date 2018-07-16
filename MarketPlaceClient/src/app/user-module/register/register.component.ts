@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   emailExists = "";
   registerationForm: FormGroup;
   registrationStatus = "";
+  emailExistsFlag = true;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private checkEmailService: CheckExistingEmailService, private registrationService: RegisterService) {
     this.registerationForm = fb.group({
@@ -33,9 +34,11 @@ export class RegisterComponent implements OnInit {
           res => {
             if (res == "true") {
               //this.registerationForm.controls['email'].setErrors({ 'incorrect': true });
+              this.emailExistsFlag = false;
               this.emailExists = "Email Already Exists!";
             }
             else {
+              this.emailExistsFlag = true;
               this.emailExists = "";
               //this.registerationForm.controls['email'].setErrors(null);
             }
