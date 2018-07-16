@@ -12,7 +12,7 @@ router.get('/posts', (req, res, next) => {
 })
 
 router.route('/posts/add')
-  .get(jsonParser, function (req, res, next) {
+  .post(jsonParser, function (req, res, next) {
 
     console.log(req.body);
 

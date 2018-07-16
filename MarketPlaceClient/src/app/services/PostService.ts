@@ -13,7 +13,7 @@ export class PostService {
   
   addPost(obj) {
     return this.http
-      .post('http://localhost:3000/api/add', obj).toPromise()
+      .post('http://localhost:3000/api/posts/add', obj).toPromise()
       .then(this.extractData)
       .catch(this.handleErrorPromise);
   }

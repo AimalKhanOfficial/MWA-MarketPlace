@@ -18,24 +18,24 @@ import { map } from 'rxjs/operators';
 })
 export class PostcreateComponent {
   myForm: FormGroup;
-  conditions=[{key:1,value:'New'},{key:2,value:'Used'}];
-  categories=[{key:1,value:'cars'},{key:2,value:'devices'}];
+  conditions = [{ key: 1, value: 'New' }, { key: 2, value: 'Used' }];
+  categories = [{ key: 1, value: 'cars' }, { key: 2, value: 'devices' }];
 
   constructor(private formBuilder: FormBuilder, private postService: PostService) {
 
 
     this.myForm = formBuilder.group({
-     
-        'title': ['product', [Validators.required]],
-        'price': ['130', [Validators.required]],
-        'condition': ['', [
-          Validators.required]
-        ],
-        'category': ['', Validators.required],
-        'is_New': ['', Validators.required],
-        'image_urls': ['img', Validators.required],
-        'description': ['', Validators.required]
-      
+
+      'title': ['product', [Validators.required]],
+      'price': ['130', [Validators.required]],
+      'condition': ['', [
+        Validators.required]
+      ],
+      'category': ['', Validators.required],
+      'is_New': ['', Validators.required],
+      'image_urls': ['img', Validators.required],
+      'description': ['', Validators.required]
+
     });
 
     this.myForm.valueChanges.subscribe(
@@ -47,11 +47,19 @@ export class PostcreateComponent {
     console.log("this.myForm.value.userData");
 
     var obj = {
-      "title": this.myForm.value.userData.title, "price": this.myForm.value.userData.price,
-      "condition": this.myForm.value.userData.condition, "category": this.myForm.value.userData.category,
-      "is_New": this.myForm.value.userData.is_New, "image_urls": this.myForm.value.userData.price,
-      "description": this.myForm.value.userData.description, "post_date": this.myForm.value.userData.post_date
+      "title": this.myForm.value.title, "price": this.myForm.value.price,
+      "condition": this.myForm.value.condition, "category": this.myForm.value.category,
+      "is_New": this.myForm.value.is_New,
+      "description": this.myForm.value.description,
+      "location": { "coordinates": [12.312213, 23.34223423], "s_type": "point" },
+      "last_updated": new Date, "status": 1,
+      "isDeleted": false, "user_id": 12,
+      "user_name": "user name",
+      "contact_number": "5349",
+      "post_date": new Date,
+      "image_urls": [this.myForm.value.image_urls, "car2.png"],
     };
+
 
     this.postService.addPost(obj).then((data) => {
 
