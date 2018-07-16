@@ -5,7 +5,9 @@ const { check, validationResult } = require('express-validator/check');
 var connection = require('../dbconnection/dbconfig');
 
 router.get('/posts', (req, res, next) => {
-  var posts = connection.Post.find({}, function (err, list) {
+  var query = connection.Post.find({}).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 0 });
+
+  query.exec(function (err, list) {
     if (err) throw err;
     return res.json(list);
   })

@@ -111,7 +111,7 @@ const My_Routes = [
     MatTreeModule,
   ],
   declarations: [PostsComponent],
-  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule]
+  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule]
 })
 export class DemoMaterialModule { }
 
