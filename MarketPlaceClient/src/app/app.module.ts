@@ -62,12 +62,14 @@ import { PostcreateComponent } from './postcreate/postcreate.component';
 import { UserModuleModule } from './user-module/user-module.module';
 import { PostsComponent } from './posts/posts.component';
 import { ForgetPasswordComponent } from './user-module/forget-password/forget-password.component';
+import { PostsDetailComponent } from './posts/posts.details.component';
 
 
 const My_Routes = [
   { path: 'admin', loadChildren: './admin-module/admin-module.module' },
   { path: 'postcreate', component: PostcreateComponent },
-  { path: 'posts', component: PostsComponent }
+  { path: 'posts', component: PostsComponent },
+  { path: 'posts/:id', component: PostsDetailComponent }
 ]
 
 @NgModule({
@@ -110,8 +112,8 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [PostsComponent],
-  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule]
+  declarations: [PostsComponent, PostsDetailComponent],
+  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes),]
 })
 export class DemoMaterialModule { }
 

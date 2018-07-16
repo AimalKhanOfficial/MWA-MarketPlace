@@ -1,0 +1,10 @@
+<div class="detail_form" *ngIf="isSelected">
+  <h2>You selected: {{selectedPost.title}} with Details</h2>
+  <div>
+    <label>Owner's name: </label>{{selectedPost.user_name}}
+    <br/>
+    <label>Description: </label>{{selectedPost.description}}
+    <br/>
+    <label>Price: </label>{{selectedPost.price}}
+  </div>
+</div>
