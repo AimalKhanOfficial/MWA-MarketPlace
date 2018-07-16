@@ -1,10 +1,10 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="post-form">
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Title" value="Sushi" formControlName="title">
+    <input matInput placeholder="Title" value="car" formControlName="title">
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Price" value="Sushi" formControlName="price">
+    <input matInput placeholder="Price" type="number" value="130" formControlName="price">
   </mat-form-field>
   <mat-form-field >
     <mat-select placeholder="Condition" formControlName="condition">
