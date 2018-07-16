@@ -36,12 +36,11 @@ export class LoginComponent implements OnInit {
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(JSON.stringify(res.token));
         
+        //Aimal Khan
         //Storing the token for communication with API
         localStorage.setItem('jwToken', res.token);
-        
         //Setting the details logged in user
         store.dispatch(onUserLogin(decodedToken));
-
         //We can fetch the state of a logged in user by:
         //console.log(store.getState().userReducer);
       }
