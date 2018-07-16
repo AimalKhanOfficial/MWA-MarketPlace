@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
+import { UserVerificationGuard } from '../guards/user-verification.guard';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { VerifyUserComponent } from './verify-user/verify-user.component';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login/forgetPassword', component: ForgetPasswordComponent },
-      { path: 'verifyUser', component: VerifyUserComponent }
+      { path: 'verifyUser', component: VerifyUserComponent, canActivate: [UserVerificationGuard] }
     ])
   ],
   declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, VerifyUserComponent]
