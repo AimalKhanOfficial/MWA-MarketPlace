@@ -31,13 +31,13 @@
     <a (click)="onUpload()" mat-button>Upload!</a>
   </div>
 
-  <div>
+  
     <label>Item is: </label>
     <mat-radio-group formControlName="is_New">
       <mat-radio-button value="1">New</mat-radio-button>
       <mat-radio-button value="2">Used</mat-radio-button>
     </mat-radio-group>
-  </div>
+  
 
 
   <button mat-button [disabled]="!myForm.valid">Post</button>
