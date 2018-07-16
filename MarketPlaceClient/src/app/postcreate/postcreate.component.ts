@@ -26,14 +26,14 @@ export class PostcreateComponent {
 
     this.myForm = formBuilder.group({
 
-      'title': ['product', [Validators.required]],
-      'price': ['130', [Validators.required]],
+      'title': ['', [Validators.required]],
+      'price': ['', [Validators.required]],
       'condition': ['', [
         Validators.required]
       ],
       'category': ['', Validators.required],
       'is_New': ['', Validators.required],
-      'image_urls': ['img', Validators.required],
+      'image_urls': ['', Validators.required],
       'description': ['', Validators.required]
 
     });
