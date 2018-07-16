@@ -3,6 +3,22 @@ var router = express.Router();
 var jsonParser = express.json();
 var connection = require('../dbconnection/dbconfig');
 var firebase = require("firebase");
+var multer = require('multer');
+var path = require('path');
+
+
+//---Upload----//
+var storage = multer.diskStorage({
+  // destination
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({ storage: storage });
+//////
 
 
 router.get('/file-upload', (req, res, next) => {
@@ -14,12 +30,9 @@ router.get('/file-upload', (req, res, next) => {
 })
 
 router.route('/file-upload')
-  .post(jsonParser, function (req, res, next) {
-
-    console.log(req.body);
-
-    uploadFile(req.body, res);
-
+  .post(upload.array("uploads[]", 12), function (req, res) {
+    console.log('files', req.files);
+    res.send(req.files);
   });
 
 
