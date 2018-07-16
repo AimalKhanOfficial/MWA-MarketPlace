@@ -20,10 +20,11 @@ import { map } from 'rxjs/operators';
 })
 export class PostcreateComponent {
   myForm: FormGroup;
-  selectedFile: File;
   conditions = [{ key: 1, value: 'New' }, { key: 2, value: 'Used' }];
   categories = [{ key: 1, value: 'cars' }, { key: 2, value: 'devices' }];
   //status 1-not approved 2-available 3-sold
+  filesToUpload: Array<File>;
+
   constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload) {
 
 
@@ -74,17 +75,22 @@ export class PostcreateComponent {
     });
   }
 
-  onFileChanged(event) {
-    this.selectedFile = event.target.files[0]
+  onFileChanged(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
   onUpload() {
     // upload code goes here
+    const formData: any = new FormData();
+    const files: Array<File> = this.filesToUpload;
+    console.log(files);
 
-    // const uploadData = new FormData();
-    // uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+    for(let i =0; i < files.length; i++){
+        formData.append("uploads[]", files[i], files[i]['name']);
+    }
+    console.log('form data variable :   '+ formData.toString());
 
-    this.fileupload.upload(this.selectedFile);
+    this.fileupload.upload(formData);
   }
 
   exampleValidator(control: FormControl): { [s: string]: boolean } {
