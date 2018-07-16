@@ -1,52 +1,40 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div formGroupName="userData">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" formControlName="title">
-    </div>
-    <div class="form-group">
-      <label for="price">Price</label>
-      <input type="number" class="form-control" id="price" formControlName="price">
-    </div>
-    <div class="form-group">
-      <label class="center-block">Condition:
-        <select class="form-control" formControlName="condition">
-          <option *ngFor="let cond of conditions" [value]="cond.key">{{cond.value}}</option>
-        </select>
-      </label>
-      <!-- <div *ngIf="!myForm.get('userData').get('email').valid">
-        Invalid Email
-      </div> -->
-    </div>
-    <div class="form-group">
-      <label class="center-block">Category:
-        <select class="form-control" formControlName="category">
-          <option *ngFor="let ctg of categories" [value]="ctg.key">{{ctg.value}}</option>
-        </select>
-      </label>
-    </div>
-    <div class="form-group">
-      <label for="image_urls">Images</label>
-      <input type="text" class="form-control" id="image_urls" formControlName="image_urls">
-    </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea class="form-control" id="description" formControlName="description"></textarea>
-    </div>
-    <div class="form-group radio">
-      The item is:
-      <label class="center-block">
-        <input type="radio" formControlName="is_New" value="1">New</label>
-      <label class="center-block">
-        <input type="radio" formControlName="is_New" value="2">Used</label>
-    </div>
-    <!-- <div class="form-group">
-      <label for="checkterms">
-        <input type="checkbox" id="checkterms" formControlName="checkterms"> I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy.</a>
-      </label>
-    </div> -->
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="post-form">
 
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Title" value="Sushi" formControlName="title">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Price" value="Sushi" formControlName="price">
+  </mat-form-field>
+  <mat-form-field >
+    <mat-select placeholder="Condition" formControlName="condition">
+      <mat-option *ngFor="let cond of conditions" [value]="cond.key">
+        {{cond.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Category" formControlName="category">
+      <mat-option *ngFor="let ctg of categories" [value]="ctg.key" >
+        {{ctg.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="Images" value="Sushi" formControlName="image_urls">
+    </mat-form-field>
 
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Leave a description" formControlName="description"></textarea>
+  </mat-form-field>
+
+  <div>
+    <mat-radio-group formControlName="is_New">
+      <mat-radio-button value="1" >New</mat-radio-button>
+      <mat-radio-button value="2" >Used</mat-radio-button>
+    </mat-radio-group>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Post</button>
+
+
+  <button mat-button [disabled]="!myForm.valid">Post</button>
 </form>

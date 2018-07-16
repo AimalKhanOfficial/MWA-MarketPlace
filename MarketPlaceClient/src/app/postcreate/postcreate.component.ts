@@ -25,7 +25,7 @@ export class PostcreateComponent {
 
 
     this.myForm = formBuilder.group({
-      'userData': formBuilder.group({
+     
         'title': ['product', [Validators.required]],
         'price': ['130', [Validators.required]],
         'condition': ['', [
@@ -33,9 +33,9 @@ export class PostcreateComponent {
         ],
         'category': ['', Validators.required],
         'is_New': ['', Validators.required],
-        'image_urls': ['', Validators.required],
+        'image_urls': ['img', Validators.required],
         'description': ['', Validators.required]
-      }),
+      
     });
 
     this.myForm.valueChanges.subscribe(
