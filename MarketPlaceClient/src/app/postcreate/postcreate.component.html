@@ -1,6 +1,3 @@
-dsfgdsf
-
-<!-- [formGroup]="myForm" -->
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div formGroupName="userData">
     <div class="form-group">
@@ -9,30 +6,39 @@ dsfgdsf
     </div>
     <div class="form-group">
       <label for="price">Price</label>
-      <input type="text" class="form-control" id="price" formControlName="price">
+      <input type="number" class="form-control" id="price" formControlName="price">
     </div>
     <div class="form-group">
-      <label for="condition">Condition</label>
-      <input type="text" class="form-control" id="condition" formControlName="condition">
+      <label class="center-block">Condition:
+        <select class="form-control" formControlName="condition">
+          <option *ngFor="let cond of conditions" [value]="cond.key">{{cond.value}}</option>
+        </select>
+      </label>
       <!-- <div *ngIf="!myForm.get('userData').get('email').valid">
         Invalid Email
       </div> -->
     </div>
     <div class="form-group">
-      <label for="category">Category</label>
-      <input type="text" class="form-control" id="category" formControlName="category">
-    </div>
-    <div class="form-group">
-      <label for="is_New">Is New</label>
-      <input type="text" class="form-control" id="is_New" formControlName="is_New">
+      <label class="center-block">Category:
+        <select class="form-control" formControlName="category">
+          <option *ngFor="let ctg of categories" [value]="ctg.key">{{ctg.value}}</option>
+        </select>
+      </label>
     </div>
     <div class="form-group">
       <label for="image_urls">Images</label>
       <input type="text" class="form-control" id="image_urls" formControlName="image_urls">
     </div>
     <div class="form-group">
-      <label for="condition">Condition</label>
-      <input type="text" class="form-control" id="condition" formControlName="condition">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" formControlName="description"></textarea>
+    </div>
+    <div class="form-group radio">
+      The item is:
+      <label class="center-block">
+        <input type="radio" formControlName="is_New" value="1">New</label>
+      <label class="center-block">
+        <input type="radio" formControlName="is_New" value="2">Used</label>
     </div>
     <!-- <div class="form-group">
       <label for="checkterms">
@@ -42,7 +48,5 @@ dsfgdsf
 
 
   </div>
-
-
-  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Sign Up</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Post</button>
 </form>
