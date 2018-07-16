@@ -1,17 +1,5 @@
-<h1>The Market Place</h1>
-<button mat-button color="primary">Click me!</button>
-<a [routerLink]="['/admin']">Admin</a>
-<br>
-<a [routerLink]="['/postcreate']">Create Post</a>
-<br>
-<a [routerLink]="['/posts']">List Post</a>
-
-<br>
-<a [routerLink]="['login']">Login</a>
-<br>
-<a [routerLink]="['register']">Register</a>
-
-<router-outlet></router-outlet>
+<router-outlet>
+</router-outlet>
 <!DOCTYPE html>
 <html>
 
@@ -56,7 +44,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 
                     <li>
-                        <a href="register.html">
+                        <a [routerLink]="['register']">
                             <i class="fa fa-arrow-right" aria-hidden="true"></i>Register</a>
                     </li>
 
