@@ -7,10 +7,15 @@ var userSchema = new Schema({
     passWord: String,
     //Role: 0 (User), 1 (Admin)
     role: Number,
+    location : {
+        coordinates : [], 
+        s_type : String
+    },
     email: String,
     isVerified: Number,
     verificationCode: Number,
     contactNumber: String,
+    location : [],
     createdAt: Date,
     updatedAt: Date
 });
@@ -22,10 +27,10 @@ var postSchema = new Schema({
     post_date: Date,
     last_updated: Date,
     price: Number,
-    status: Number,
+    status: {key:Number,value:String},
     condition: Number,
-    category: Number,
-    is_New: Boolean,
+    category:  {key:Number,value:String},
+    is_New: Number,
     isDeleted: Boolean,
     image_urls: [String],
     user_id: Number,

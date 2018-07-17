@@ -73,6 +73,7 @@ import { ProfileupdateComponent } from './profileupdate/profileupdate.component'
 const My_Routes = [
   { path: 'admin', loadChildren: './admin-module/admin-module.module' },
   { path: 'postcreate', component: PostcreateComponent },
+  { path: 'postupdate/:id', component: PostupdateComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'posts/:id', component: PostsDetailComponent }
 ]
@@ -117,7 +118,7 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [PostsComponent, PostsDetailComponent, PostupdateComponent, ProfileupdateComponent],
+  declarations: [PostsComponent, PostsDetailComponent, ProfileupdateComponent],
   imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes), MatPaginatorModule, MatCardModule]
 })
 export class DemoMaterialModule { }
@@ -125,9 +126,11 @@ export class DemoMaterialModule { }
 @NgModule({
   declarations: [
     AppComponent,
-    PostcreateComponent
+    PostcreateComponent,
+    PostupdateComponent
   ],
   imports: [
+    ChartModule,
     BrowserModule,
     FormsModule,
     HttpModule,

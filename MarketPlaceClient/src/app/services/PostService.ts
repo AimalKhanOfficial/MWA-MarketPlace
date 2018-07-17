@@ -18,11 +18,23 @@ export class PostService {
       .catch(this.handleErrorPromise);
   }
 
+  updatePost(id,obj) {
+    return this.http
+      .put('http://localhost:3000/api/posts/'+id, obj).toPromise()
+      .then(this.extractData)
+      .catch(this.handleErrorPromise);
+  }
+
+  
   activatePost(id) {
     return this.http.get('http://localhost:3000/api/posts/activate/' + id)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleErrorPromise);
+  }
+
+  getPost(id) {
+    return this.http.get('http://localhost:3000/api/posts/' + id).pipe(map(x=>x.json()))
   }
 
   private extractData(res) {
