@@ -6,3 +6,7 @@ body { margin: 0; }
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body { margin: 0; }
+@import url("../css/style.css");
+@import url("../css/font-awesome.css");
+
+@import url("../css/bootstrap.css");
