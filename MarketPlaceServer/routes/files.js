@@ -11,7 +11,7 @@ var fs = require('fs');
 var myStorage = multer.diskStorage({
   // destination
   destination: function (req, file, cb) {
-    cb(null, './public/uploads/')
+    cb(null, './uploads/')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -50,7 +50,7 @@ function uploadFile(files, res) {
   for (let i = 0; i < files.length; i++) {
 
     // Upload a local file to a new file to be created in your bucket.
-    bucket.upload('uploads/'+files.originalname, function (err, file) {
+    bucket.upload('uploads/'+files[i].originalname, function (err, file) {
       if (!err) {
         if (i == files.length - 1) {
           console.log("Upload Done")

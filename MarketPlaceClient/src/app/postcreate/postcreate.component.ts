@@ -86,11 +86,19 @@ export class PostcreateComponent {
     console.log(files);
 
     for(let i =0; i < files.length; i++){
-        formData.append("uploads[]", files[i], files[i]['name']);
+        formData.append("uploads[]", files[i],  this.guid()+"."+files[i].name.split('.')[1]);
     }
     console.log('form data variable :   '+ formData.toString());
 
     this.fileupload.upload(formData);
+  }
+   guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
   exampleValidator(control: FormControl): { [s: string]: boolean } {
