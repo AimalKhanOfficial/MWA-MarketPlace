@@ -4,7 +4,10 @@ export class Post {
     user_name: string;
     description: string;
     price: number;
-    image_urls: string;
+    image_urls: string;    
+    contact_number: string;             
+    post_date: string;
+    condition: number;   
 
     constructor() {
     }

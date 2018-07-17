@@ -19,7 +19,11 @@ export class HttpService {
     findPostById(id): Observable<any> {
         return this.http.get(this.url + "/posts/" + id);
     }
-    
+
+    deletePost(id):Observable<any> {
+        return this.http.delete(this.url + "/posts/" + id);
+    }
+
     findAllUsers(): Observable<any> {
         return this.http.get(this.url + "/users");  
     }

@@ -17,7 +17,7 @@ export class PostsComponent implements OnInit {
   // posts: Post[];
   dataSource ;
   isSelected = false;
-  displayedColumns: string[] = ['image_urls', 'title', 'description', 'price', 'user_name', "actions"];
+  displayedColumns: string[] = ['image_urls', 'title', 'description', 'price', 'user_name', 'condition', "actions"];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // selectedPost:Post = new Post();
 
@@ -40,6 +40,16 @@ export class PostsComponent implements OnInit {
         this.dataSource  = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
       } else {  
+        console.log(err);
+      }
+    });
+  }
+
+  onDelete(id) {
+    this.postListService.removePost(id, (err, data) => {
+      if(!err) {
+        this.initializePostList();
+      } else {
         console.log(err);
       }
     });

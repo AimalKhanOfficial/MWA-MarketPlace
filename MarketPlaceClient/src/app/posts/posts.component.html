@@ -21,7 +21,7 @@
     </ng-container>
 
     <ng-container matColumnDef="user_name">
-      <th mat-header-cell *matHeaderCellDef> Owner Name </th>
+      <th mat-header-cell *matHeaderCellDef> Seller </th>
       <td mat-cell *matCellDef="let element"> {{element.user_name}} </td>
     </ng-container>
 
@@ -29,16 +29,27 @@
       <th mat-header-cell *matHeaderCellDef> Description </th>
       <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
-
+  
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef> Price </th>
-      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.price | currency :'USD'}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="condition">
+        <th mat-header-cell *matHeaderCellDef> Condition </th>
+        <td mat-cell *matCellDef="let element"> 
+            <p *ngIf="element.condition ==1; then new else used"></p>
+            <ng-template #new>New</ng-template>
+            <ng-template #used>Used</ng-template>
+        </td>
+      </ng-container>
+
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
         <!-- <button mat-raised-button (click)="onSelect(element)">Details</button> -->
-        <button mat-raised-button [routerLink]="['/posts', element._id ]"> Details</button>
+        <button mat-raised-button [routerLink]="['/posts', element._id ]"> Details</button> | 
+        <button mat-raised-button class="btn btn-danger" (click)="onDelete(element._id)"> Delete</button>
       </td>
     </ng-container>
 
