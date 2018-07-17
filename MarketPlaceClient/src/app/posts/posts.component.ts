@@ -14,16 +14,16 @@ import { Injectable } from '@angular/core';
 export class PostsComponent implements OnInit {
   listForm: FormGroup;
   ELEMENT_DATA: any[] =[];
-  posts: Post[];
+  // posts: Post[];
   dataSource ;
   isSelected = false;
   displayedColumns: string[] = ['title', 'description', 'price', 'user_name', "actions"];
-  selectedPost:Post = new Post();
+  // selectedPost:Post = new Post();
 
-  onSelect(myPost: Post):void{
-    this.selectedPost = myPost;
-    this.isSelected = true;
-  }
+  // onSelect(myPost: Post):void{
+  //   this.selectedPost = myPost;
+  //   this.isSelected = true;
+  // }
   constructor(private postListService: PostListService) { }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class PostsComponent implements OnInit {
   initializePostList() {
     this.postListService.getAllPosts((err, list) => {
       if (!err) {
-        this.posts = list;
+        // this.posts = list;
         this.ELEMENT_DATA = list;
         this.dataSource  = new MatTableDataSource(this.ELEMENT_DATA);
       } else {  
