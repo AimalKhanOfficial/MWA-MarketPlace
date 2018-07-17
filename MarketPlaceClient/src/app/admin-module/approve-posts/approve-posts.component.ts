@@ -36,7 +36,7 @@ export class ApprovePostsComponent implements OnInit {
     this.postListService.getAllPosts((err, list) => {
       if (!err) {
         this.posts = list;
-        console.log(this.posts);
+
       } else {
         console.log(err);
       }

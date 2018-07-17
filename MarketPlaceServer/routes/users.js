@@ -91,11 +91,7 @@ router.post("/login", [
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.mapped() });
   }
-<<<<<<< HEAD
-  // console.log(process.env.JWT_PRIVATE)
-=======
   console.log("The token is ", process.env.JWT_PRIVATE);
->>>>>>> 6131777191572978491bbc3685e8d0c9984c0340
   connection.User.find({ email: req.body.email, passWord: req.body.password }, function (err, user) {
     if (user.length > 0) {
       console.log(user[0]);
@@ -128,7 +124,7 @@ router.post("/register", [
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.mapped() });
   }
-  console.log("API" , req.body.long);
+  console.log("API", req.body.long);
   var verificationCode = utilities.generateVerificationCode();
   console.log(req.body.locationUser);
   var newUser = new connection.User({
