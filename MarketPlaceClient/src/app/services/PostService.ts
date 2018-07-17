@@ -10,10 +10,17 @@ import { map, delay } from 'rxjs/operators';
 })
 export class PostService {
   constructor(private http: Http) { }
-  
+
   addPost(obj) {
     return this.http
       .post('http://localhost:3000/api/posts/add', obj).toPromise()
+      .then(this.extractData)
+      .catch(this.handleErrorPromise);
+  }
+
+  activatePost(id) {
+    return this.http.get('http://localhost:3000/api/posts/activate/' + id)
+      .toPromise()
       .then(this.extractData)
       .catch(this.handleErrorPromise);
   }

@@ -45,6 +45,14 @@ export class LoginComponent implements OnInit {
         if (decodedToken.isVerified == 0) {
           this.router.navigate(['verifyUser']);
         }
+        else {
+          if (store.getState().userReducer.role === 1) {
+            this.router.navigate(['admin']);
+          }
+          else {
+            //some main page for plain user!
+          }
+        }
 
         //We can fetch the state of a logged in user by:
         //console.log(store.getState().userReducer);

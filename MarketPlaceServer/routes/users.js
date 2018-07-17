@@ -153,4 +153,18 @@ router.post("/register", [
   });
 });
 
+
+router.get('/all', (req, res, next) => {
+  console.log("entering function");
+  connection.User.find({}, function (err, user) {
+
+    console.log(user[0]);
+    return res.json({
+      working: true,
+      user: { abc: 123 }
+    });
+
+  });
+});
+
 module.exports = router;

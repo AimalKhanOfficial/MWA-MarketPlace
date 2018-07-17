@@ -10,6 +10,9 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartModule } from 'angular-highcharts';
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -51,9 +54,6 @@ import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import 'hammerjs';
 import { MainAdminComponent } from './main-admin/main-admin.component';
-
-
-
 
 @NgModule({
   exports: [
@@ -101,6 +101,7 @@ export class DemoMaterialModule { }
 
 @NgModule({
   imports: [
+    ChartModule,
     BrowserModule,
     CommonModule,
     RouterModule.forChild([
@@ -110,7 +111,6 @@ export class DemoMaterialModule { }
         children: [
           { path: 'users', component: UsersComponent },
           { path: 'approvePosts', component: ApprovePostsComponent }]
-
       },
     ]),
     NoopAnimationsModule,
@@ -118,7 +118,8 @@ export class DemoMaterialModule { }
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
+    LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+    NgbModule
   ],
   declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent],
   bootstrap: [MainAdminComponent]

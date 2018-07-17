@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostListService } from '../services/post.list.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
 import { Post } from '../entities/post';
 import { Injectable } from '@angular/core';
@@ -17,7 +17,8 @@ export class PostsComponent implements OnInit {
   // posts: Post[];
   dataSource ;
   isSelected = false;
-  displayedColumns: string[] = ['title', 'description', 'price', 'user_name', "actions"];
+  displayedColumns: string[] = ['image_urls', 'title', 'description', 'price', 'user_name', "actions"];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   // selectedPost:Post = new Post();
 
   // onSelect(myPost: Post):void{
@@ -28,6 +29,7 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     this.initializePostList();
+    
   }
 
   initializePostList() {
@@ -36,6 +38,7 @@ export class PostsComponent implements OnInit {
         // this.posts = list;
         this.ELEMENT_DATA = list;
         this.dataSource  = new MatTableDataSource(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
       } else {  
         console.log(err);
       }

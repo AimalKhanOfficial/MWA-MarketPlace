@@ -18,6 +18,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
+//Highcharts - Aimal
+import { ChartModule } from 'angular-highcharts';
+
 /* Required for Angular Material 
 added by jawad*/
 import {
@@ -115,7 +118,7 @@ const My_Routes = [
     MatTreeModule,
   ],
   declarations: [PostsComponent, PostsDetailComponent, PostupdateComponent, ProfileupdateComponent],
-  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes),]
+  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes), MatPaginatorModule, MatCardModule]
 })
 export class DemoMaterialModule { }
 

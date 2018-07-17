@@ -1,3 +1,37 @@
-<p>
-  users works!
-</p>
+<div>
+  <mat-card class="example-card">
+    <mat-card-content>
+
+
+      <div class="container">
+        <span>User Name</span>
+        <span> Email </span>
+        <span> </span>
+        <span> Number </span>
+        <span></span>
+        <span> Is Active </span>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+  <mat-card *ngFor="let user of users" class="example-card">
+    <mat-card-content>
+      <div mat-card-avatar class="example-header-image"></div>
+
+      <div class="container">
+        <span>{{user.userName}}</span>
+        <span>{{user.email}}</span>
+        <span>{{user.contactNumber}}</span>
+        <span class="label label-success" *ngIf=user.isVerified>Active</span>
+        <span class="label label-notActive" *ngIf=!user.isVerified>Not Active</span>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+
+</div>
