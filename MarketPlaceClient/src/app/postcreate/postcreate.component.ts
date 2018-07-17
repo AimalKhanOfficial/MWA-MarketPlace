@@ -56,14 +56,14 @@ export class PostcreateComponent {
 
     let userObj = JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
 
-   // userObj
+    //userObj.location[0].coorinates[0]
 
     var obj = {
       "title": this.myForm.value.title, "price": this.myForm.value.price,
       "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.value == this.myForm.value.category) },
       "is_New": this.myForm.value.is_New,
       "description": this.myForm.value.description,
-      "location": { "coordinates": [12.312213, 23.34223423], "s_type": "point" },
+      "location": { "coordinates": [userObj.location[0].coorinates[0], userObj.location[0].coorinates[1]], "s_type": "point" },
       "last_updated": new Date, "status": { "key": 1, "value": "not approved" },
       "isDeleted": false, "user_id": 12,
       "user_name": "user name",
