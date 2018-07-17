@@ -16,10 +16,12 @@ export class HttpService {
         return this.http.get(this.url + "/posts");
     }
 
-    findAllUsers(): Observable<any> {
-        return this.http.get(this.url + "/users");
-
-        findPostById(id): Observable < any > {
-            return this.http.get(this.url + "/posts/" + id);
-        }
+    findPostById(id): Observable<any> {
+        return this.http.get(this.url + "/posts/" + id);
     }
+    
+    findAllUsers(): Observable<any> {
+        return this.http.get(this.url + "/users");  
+    }
+        
+}
