@@ -10,7 +10,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ChartModule } from 'angular-highcharts';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -116,7 +117,8 @@ export class DemoMaterialModule { }
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
+    LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+    NgbModule
   ],
   declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent],
   bootstrap: [MainAdminComponent]
