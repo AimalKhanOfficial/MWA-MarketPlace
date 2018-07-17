@@ -70,7 +70,6 @@ import { ProfileupdateComponent } from './profileupdate/profileupdate.component'
 const My_Routes = [
   { path: 'admin', loadChildren: './admin-module/admin-module.module' },
   { path: 'postcreate', component: PostcreateComponent },
-  { path: 'posts', component: PostsComponent }
   { path: 'posts', component: PostsComponent },
   { path: 'posts/:id', component: PostsDetailComponent }
 ]
@@ -115,8 +114,6 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [PostsComponent],
-  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule]
   declarations: [PostsComponent, PostsDetailComponent, PostupdateComponent, ProfileupdateComponent],
   imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes),]
 })
