@@ -91,7 +91,7 @@ router.post("/login", [
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.mapped() });
   }
-  console.log(process.env.JWT_PRIVATE)
+  // console.log(process.env.JWT_PRIVATE)
   connection.User.find({ email: req.body.email, passWord: req.body.password }, function (err, user) {
     if (user.length > 0) {
       console.log(user[0]);

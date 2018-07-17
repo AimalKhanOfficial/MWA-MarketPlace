@@ -23,7 +23,7 @@ router.get('/posts/:id', (req, res, next) => {
 router.get("/posts/activate/:id", (req, res, next) => {
 
 
-  var query = connection.Post.update({ _id: req.params.id }, { $set: { status: 2 } }, function (err, posts) {
+  var query = connection.Post.update({ _id: req.params.id }, { $set: { status: { key: "2", value: "Approved" } } }, function (err, posts) {
     if (err) {
       console.log(err);
       res.json("err");

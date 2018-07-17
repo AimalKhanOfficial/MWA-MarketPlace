@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostListService } from '../../services/post.list.service';
 import { PostService } from '../../services/PostService';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-approve-posts',
@@ -9,11 +11,22 @@ import { PostService } from '../../services/PostService';
 })
 export class ApprovePostsComponent implements OnInit {
   posts: any[];
-  constructor(private postListService: PostListService, private postService: PostService) { }
+  activationResponse = "";
+
+  constructor(private postListService: PostListService, private postService: PostService, private router: Router) { }
 
   activatePost(id: string) {
     console.log(id);
-    this.postService.activatePost(id);
+    this.postService.activatePost(id)
+      .then(function (response) {
+        console.log(response);
+        this.activationResponse = response;
+        this.router.navigate(['admin']);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   ngOnInit() {
     this.initializePostList();
@@ -23,11 +36,12 @@ export class ApprovePostsComponent implements OnInit {
     this.postListService.getAllPosts((err, list) => {
       if (!err) {
         this.posts = list;
-
+        console.log(this.posts);
       } else {
         console.log(err);
       }
     });
   }
+
 
 }
