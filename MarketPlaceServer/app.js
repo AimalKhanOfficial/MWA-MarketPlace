@@ -10,6 +10,7 @@ require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var analyticsRouter = require('./routes/analytics');
 var postsRouter = require('./routes/posts');
 var fileupload = require('./routes/files');
 
@@ -36,7 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', postsRouter);
 app.use('/imgapi', fileupload);
-
+app.use('/analytics', analyticsRouter);
 
 
 // catch 404 and forward to error handler

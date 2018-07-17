@@ -18,6 +18,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
+//Highcharts - Aimal
+import { ChartModule } from 'angular-highcharts';
+
 /* Required for Angular Material 
 added by jawad*/
 import {
