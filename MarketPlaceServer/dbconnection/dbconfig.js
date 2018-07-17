@@ -7,10 +7,15 @@ var userSchema = new Schema({
     passWord: String,
     //Role: 0 (User), 1 (Admin)
     role: Number,
+    location : {
+        coordinates : [], 
+        s_type : String
+    },
     email: String,
     isVerified: Number,
     verificationCode: Number,
     contactNumber: String,
+    location : [],
     createdAt: Date,
     updatedAt: Date
 });

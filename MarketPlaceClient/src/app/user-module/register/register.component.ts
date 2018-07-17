@@ -13,9 +13,11 @@ import { RegisterService } from '../../services/register.service';
 })
 export class RegisterComponent implements OnInit {
   emailExists = "";
+  geolocationPosition;
   registerationForm: FormGroup;
   registrationStatus = "";
   emailExistsFlag = true;
+
 
   constructor(private fb: FormBuilder, private http: HttpClient, private checkEmailService: CheckExistingEmailService, private registrationService: RegisterService) {
     this.registerationForm = fb.group({
@@ -52,10 +54,41 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    let res = this.registrationService.register(this.http, this.registerationForm.value.userName, this.registerationForm.value.passWord, this.registerationForm.value.email, this.registerationForm.value.contactNumber);
+    let locationParam = [];
+    if (window.navigator && window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(
+        position => {
+          this.geolocationPosition = position;
+          locationParam[0] = position.coords.longitude;
+          locationParam[1] = position.coords.latitude;
+          this.sendReq(locationParam);
+        },
+        error => {
+
+          locationParam[0] = 0;
+          locationParam[1] = 0;
+          this.sendReq(locationParam);
+          switch (error.code) {
+            case 1:
+              console.log('Permission Denied');
+              break;
+            case 2:
+              console.log('Position Unavailable');
+              break;
+            case 3:
+              console.log('Timeout');
+              break;
+          }
+        }
+      );
+    };
+
+  }
+
+  sendReq(locationParam) {
+    let res = this.registrationService.register(this.http, this.registerationForm.value.userName, this.registerationForm.value.passWord, this.registerationForm.value.email, this.registerationForm.value.contactNumber, locationParam);
     console.log(res);
     res.subscribe(finalres => {
-      console.log(finalres);
       if (finalres === "Registration successful!") {
         this.registrationStatus = "Registration Successful, check your email for verification code!";
       }

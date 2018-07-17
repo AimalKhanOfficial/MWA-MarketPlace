@@ -91,7 +91,7 @@ router.post("/login", [
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.mapped() });
   }
-  console.log(process.env.JWT_PRIVATE)
+  console.log("The token is ", process.env.JWT_PRIVATE);
   connection.User.find({ email: req.body.email, passWord: req.body.password }, function (err, user) {
     if (user.length > 0) {
       console.log(user[0]);
@@ -115,16 +115,18 @@ router.post("/register", [
   check('passWord').exists().withMessage("provide password"),
   check('email').exists().withMessage("provide email"),
   check('email').isEmail().withMessage("provide valid email"),
-  check('contactNumber').exists().withMessage("provide contactNumber")
+  check('contactNumber').exists().withMessage("provide contactNumber"),
+  check('lat').exists().withMessage("provide lat"),
+  check('long').exists().withMessage("provide long")
 ], (req, res, next) => {
   //For Validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.mapped() });
   }
-
+  console.log("API" , req.body.long);
   var verificationCode = utilities.generateVerificationCode();
-
+  console.log(req.body.locationUser);
   var newUser = new connection.User({
     userName: req.body.userName,
     passWord: req.body.passWord,
@@ -133,6 +135,10 @@ router.post("/register", [
     isVerified: 0,
     verificationCode: verificationCode,
     contactNumber: req.body.contactNumber,
+    location: {
+      coorinates: [req.body.long, req.body.lat],
+      s_type: "point"
+    },
     createdAt: Date.now(),
     updatedAt: Date.now()
   });
@@ -145,9 +151,10 @@ router.post("/register", [
       res.status(500).json("Something went wrong, please try again later!");
     }
     else {
-      utilities.sendMail(req.body.email, "Registration Successful", `
-        Hey there ${req.body.userName} <br/>
-          Use ${verificationCode} to verify your account!`);
+      //Email Commented out becuz of NO ACCESS TOKEN!
+      // utilities.sendMail(req.body.email, "Registration Successful", `
+      //   Hey there ${req.body.userName} <br/>
+      //     Use ${verificationCode} to verify your account!`);
       res.status(200).json("Registration successful!");
     }
   });
