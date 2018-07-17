@@ -48,7 +48,8 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
         <!-- <button mat-raised-button (click)="onSelect(element)">Details</button> -->
-        <button mat-raised-button [routerLink]="['/posts', element._id ]"> Details</button>
+        <button mat-raised-button [routerLink]="['/posts', element._id ]"> Details</button> | 
+        <button mat-raised-button class="btn btn-danger" (click)="onDelete(element._id)"> Delete</button>
       </td>
     </ng-container>
 

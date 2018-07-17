@@ -45,6 +45,16 @@ export class PostsComponent implements OnInit {
     });
   }
 
+  onDelete(id) {
+    this.postListService.removePost(id, (err, data) => {
+      if(!err) {
+        this.initializePostList();
+      } else {
+        console.log(err);
+      }
+    });
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

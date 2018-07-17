@@ -6,7 +6,7 @@ var connection = require('../dbconnection/dbconfig');
 
 router.get('/posts', (req, res, next) => {
   // var query = connection.Post.find({}).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 1 });
-  connection.Post.find({"status.key":2}, function (err, list) {
+  connection.Post.find({"status.key":2, isDeleted: false}, function (err, list) {
     if (err) throw err;
     return res.json(list);
   })
@@ -19,6 +19,16 @@ router.get('/posts/:id', (req, res, next) => {
     return res.json(data);
   })
 })
+
+router.delete('/posts/:id', (req, res, next) => {
+  connection.Post.update({ _id: req.params.id }, { $set: { isDeleted: true } }, function (err, data) {
+      if (!err) {
+          return res.status(200).json(data);
+      } else {
+          return res.status(500).send(err);
+      }    
+  });
+});
 
 router.get("/posts/activate/:id", (req, res, next) => {
 
