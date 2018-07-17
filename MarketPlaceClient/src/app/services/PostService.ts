@@ -20,7 +20,7 @@ export class PostService {
 
   updatePost(id,obj) {
     return this.http
-      .put('http://localhost:3000/api/posts/update/'+id, obj).toPromise()
+      .put('http://localhost:3000/api/posts/'+id, obj).toPromise()
       .then(this.extractData)
       .catch(this.handleErrorPromise);
   }
@@ -34,7 +34,7 @@ export class PostService {
   }
 
   getPost(id) {
-    return this.http.get('http://localhost:3000/api/posts/' + id)
+    return this.http.get('http://localhost:3000/api/posts/' + id).pipe(map(x=>x.json()))
   }
 
   private extractData(res) {

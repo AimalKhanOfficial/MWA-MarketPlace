@@ -15,7 +15,7 @@ router.get('/posts', (req, res, next) => {
 router.get('/posts/:id', (req, res, next) => {
   // var query = connection.Post.find({}).findOne({ '_id': req.params.id }).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 1 });
   connection.Post.find({}).findOne({ '_id': req.params.id }, function (err, data) {
-    if (err) return res.status(500).send(ERROR);
+    if (err) return res.status(500).send(err);
     return res.json(data);
   })
 })
@@ -52,8 +52,8 @@ router.route('/posts/add')
 
   });
 
-router.route('/posts/update/:id')
-  .post(jsonParser, function (req, res, next) {
+router.route('/posts/:id')
+  .put(jsonParser, function (req, res, next) {
 
     console.log(req.body);
 
