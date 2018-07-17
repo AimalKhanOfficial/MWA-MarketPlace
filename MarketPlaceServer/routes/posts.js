@@ -5,7 +5,8 @@ const { check, validationResult } = require('express-validator/check');
 var connection = require('../dbconnection/dbconfig');
 
 router.get('/posts', (req, res, next) => {
-  var query = connection.Post.find({}).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 0 });
+  var query = connection.Post.find({});
+  // .select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 0 });
 
   query.exec(function (err, list) {
     if (err) throw err;
@@ -13,6 +14,29 @@ router.get('/posts', (req, res, next) => {
   })
 })
 
+router.get("/posts/activate/:id", (req, res, next) => {
+
+
+  var query = connection.Post.update({ _id: req.params.id }, { $set: { status: 2 } }, function (err, posts) {
+    if (err) {
+      console.log(err);
+      res.json("err");
+    }
+    else {
+      console.log("updated");
+      res.status(200).json("Post Activated");
+    }
+  });
+});
+
+router.get('/users', (req, res, next) => {
+  var query = connection.User.find({});
+
+  query.exec(function (err, list) {
+    if (err) throw err;
+    return res.json(list);
+  })
+})
 router.route('/posts/add')
   .post(jsonParser, function (req, res, next) {
 
