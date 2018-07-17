@@ -28,7 +28,7 @@
   <div class="form-group">
     <input style="display: none" type="file" (change)="onFileChanged($event)" multiple formControlName="image_urls" #fileInput>
     <a (click)="fileInput.click();" mat-button>Select images</a>
-    <a (click)="onUpload()" mat-button>Upload!</a>
+    <a (click)="onUpload()" mat-button >Upload!</a>{{uploadStatus}}
   </div>
 
   
@@ -38,7 +38,7 @@
       <mat-radio-button value="2">Used</mat-radio-button>
     </mat-radio-group>
   
-
+    <input type="text" formControlName="myvalidator" style="display: none" />
 
   <button mat-button [disabled]="!myForm.valid">Post</button>
 </form>

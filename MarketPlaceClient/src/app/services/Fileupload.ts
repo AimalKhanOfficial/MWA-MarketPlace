@@ -12,9 +12,7 @@ export class Fileupload {
   constructor(private http: Http) { }
 
   upload(uploadData) {
-    this.http.post('http://localhost:3000/imgapi/file-upload', uploadData).toPromise()
-      .then(this.extractData)
-      .catch(this.handleErrorPromise);
+    return this.http.post('http://localhost:3000/imgapi/file-upload', uploadData)
   }
 
   private extractData(res) {

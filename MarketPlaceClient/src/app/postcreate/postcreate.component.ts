@@ -24,6 +24,8 @@ export class PostcreateComponent {
   categories = [{ key: 1, value: 'cars' }, { key: 2, value: 'devices' }];
   //status 1-not approved 2-available 3-sold
   filesToUpload: Array<File>;
+  uploadStatus;
+  newImagesNames: String[] = [];
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload) {
 
@@ -38,7 +40,9 @@ export class PostcreateComponent {
       'category': ['', Validators.required],
       'is_New': ['', Validators.required],
       'image_urls': ['', Validators.required],
-      'description': ['', Validators.required]
+      'description': ['', Validators.required],
+      "myvalidator": ['', Validators.required]
+
 
     });
 
@@ -61,7 +65,7 @@ export class PostcreateComponent {
       "user_name": "user name",
       "contact_number": "5349",
       "post_date": new Date,
-      "image_urls": [this.myForm.value.image_urls, "car2.png"],
+      "image_urls":  this.newImagesNames
     };
 
 
@@ -77,6 +81,7 @@ export class PostcreateComponent {
 
   onFileChanged(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
+    this.uploadStatus="";
   }
 
   onUpload() {
@@ -85,14 +90,21 @@ export class PostcreateComponent {
     const files: Array<File> = this.filesToUpload;
     console.log(files);
 
-    for(let i =0; i < files.length; i++){
-        formData.append("uploads[]", files[i],  this.guid()+"."+files[i].name.split('.')[1]);
-    }
-    console.log('form data variable :   '+ formData.toString());
+    for (let i = 0; i < files.length; i++) {
 
-    this.fileupload.upload(formData);
+      let imgName= this.guid() + "." + files[i].name.split('.')[1];
+      this.newImagesNames.push(imgName);
+
+      formData.append("uploads[]", files[i],imgName);
+    }
+    console.log('form data variable :   ' + formData.toString());
+
+    this.fileupload.upload(formData).subscribe((res)=>{
+      this.myForm.get('myvalidator').setValue("sdfsd");
+      this.uploadStatus="Done";
+    });
   }
-   guid() {
+  guid() {
     function s4() {
       return Math.floor((1 + Math.random()) * 0x10000)
         .toString(16)
