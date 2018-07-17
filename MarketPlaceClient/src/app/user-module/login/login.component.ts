@@ -42,6 +42,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('jwToken', res.token);
         //Setting the details logged in user
         store.dispatch(onUserLogin(decodedToken));
+        //Session Storage
+        sessionStorage.setItem("loggedInUserDetails", decodedToken);
+        sessionStorage.setItem("token", res.token);
+
         if (decodedToken.isVerified == 0) {
           this.router.navigate(['verifyUser']);
         }
