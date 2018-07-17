@@ -23,13 +23,8 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@auth0/angular-jwt": "^2.0.0",
-<<<<<<< HEAD
-    "@types/highcharts": "^5.0.25",
-    "angular-highcharts": "^4.1.2",
-=======
     "@ng-bootstrap/ng-bootstrap": "^2.2.0",
     "popper.js": "^1.14.3",
->>>>>>> ef41977bfd40b027b20885e90c1b52a1ab8c60fd
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "highcharts": "^6.1.1",
