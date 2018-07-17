@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  //Works like async code for gaining location
+  //Works like async code for gaining location - AGAINNN
   sendReq(locationParam) {
     let res = this.registrationService.register(this.http, this.registerationForm.value.userName, this.registerationForm.value.passWord, this.registerationForm.value.email, this.registerationForm.value.contactNumber, locationParam);
     console.log(res);
