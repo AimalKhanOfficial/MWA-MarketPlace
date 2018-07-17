@@ -31,7 +31,7 @@ export class PostupdateComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload, route: ActivatedRoute) {
 
 
-    route.queryParams.subscribe((params) => { this.id = params['id'] });
+    route.queryParams.subscribe((params) => {console.log(params);  this.id = params['id'] });
 
 
     this.myForm = formBuilder.group({
@@ -60,7 +60,11 @@ export class PostupdateComponent implements OnInit {
     if (this.id) {
 
       console.log("yes")
-      this.postService.getPost(this.id);
+      this.postService.getPost(this.id).subscribe((data)=>{
+
+
+
+      });
 
     }
     else {

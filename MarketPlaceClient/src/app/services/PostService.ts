@@ -35,9 +35,6 @@ export class PostService {
 
   getPost(id) {
     return this.http.get('http://localhost:3000/api/posts/' + id)
-      .toPromise()
-      .then(this.extractData)
-      .catch(this.handleErrorPromise);
   }
 
   private extractData(res) {
