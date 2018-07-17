@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("./css/style.css");
+@import url("./css/font-awesome.css");
+
+@import url("./css/bootstrap.css");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html,body{
     height: 100%;
 }
 body { margin: 0; }
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-body { margin: 0; }
-@import url("../css/style.css");
-@import url("../css/font-awesome.css");
 
-@import url("../css/bootstrap.css");
