@@ -18,4 +18,14 @@ export class PostListService {
             }
         });
     }
+
+    getPostById(id, callback) {
+        this.httpService.findPostById(id).subscribe(post => {
+          if (post !== null) {
+            return callback(null, post.json());
+          } else {
+            return callback("Not Found", null);
+          }
+        });
+      }
 }
