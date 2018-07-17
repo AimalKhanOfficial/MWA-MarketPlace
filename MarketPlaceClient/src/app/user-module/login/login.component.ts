@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         //Setting the details logged in user
         store.dispatch(onUserLogin(decodedToken));
         //Session Storage
-        sessionStorage.setItem("loggedInUserDetails", decodedToken);
+        sessionStorage.setItem("loggedInUserDetails", JSON.stringify(decodedToken));
         sessionStorage.setItem("token", res.token);
 
         if (decodedToken.isVerified == 0) {
