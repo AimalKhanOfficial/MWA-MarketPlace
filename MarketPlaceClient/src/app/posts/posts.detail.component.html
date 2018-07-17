@@ -3,20 +3,34 @@
   <div class="row">
     <div class="col-md-2">
       <span *ngFor="let img of selectedPost.image_urls">
-        <img class="card-img-top" alt="" style="height: 140px; width: 100%; display: block;" 
-        src="{{'https://firebasestorage.googleapis.com/v0/b/mwamp-cffcf.appspot.com/o/'+
+        <img class="card-img-top" alt="" style="height: 140px; width: 100%; display: block;" src="{{'https://firebasestorage.googleapis.com/v0/b/mwamp-cffcf.appspot.com/o/'+
           img+
           '?alt=media&token=cb68bddb-5097-420f-a84e-072498e580fb'}}" data-holder-rendered="true">
-          <br/>
+        <br/>
       </span>
     </div>
     <div class="col-md-4">
       <span class="pull-right">
-        <label>Owner's name: </label>{{selectedPost.user_name}}
-        <br/>
-        <label>Description: </label>{{selectedPost.description}}
-        <br/>
-        <label>Price: </label>{{selectedPost.price}}</span>
+        <p>
+          <label>Seller: </label> {{selectedPost.user_name}}
+        </p>
+        <p>
+          <label>Description: </label> {{selectedPost.description}}
+        </p>
+        <p>
+          <label>Price: </label> {{selectedPost.price | currency :'USD'}}
+        </p>
+        <p>
+          <label>Contact Number: </label> {{selectedPost.contact_number}}
+        </p>
+        <p>
+          <label>Posted Date: </label> {{selectedPost.post_date | date:"MM/dd/yy"}}
+        </p>
+        <label>Condition: </label>
+        <div *ngIf="selectedPost.condition ==1; then new else used"></div>
+        <ng-template #new> New</ng-template>
+        <ng-template #used> Used</ng-template>
+      </span>
     </div>
   </div>
 </div>

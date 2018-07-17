@@ -12,7 +12,6 @@ import { Router, ActivatedRoute } from '../../../node_modules/@angular/router';
 export class PostsDetailComponent implements OnInit {
   listForm: FormGroup;
   isSelected = false;
-  displayedColumns: string[] = ['title', 'description', 'price', 'user_name', "actions"];
   selectedPost: Post = new Post();
 
   constructor(private postListService: PostListService, private router: Router, private activRoute: ActivatedRoute) {

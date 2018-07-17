@@ -17,7 +17,7 @@ export class PostsComponent implements OnInit {
   // posts: Post[];
   dataSource ;
   isSelected = false;
-  displayedColumns: string[] = ['image_urls', 'title', 'description', 'price', 'user_name', "actions"];
+  displayedColumns: string[] = ['image_urls', 'title', 'description', 'price', 'user_name', 'condition', "actions"];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // selectedPost:Post = new Post();
 
