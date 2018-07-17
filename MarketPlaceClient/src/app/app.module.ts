@@ -73,6 +73,7 @@ import { ProfileupdateComponent } from './profileupdate/profileupdate.component'
 const My_Routes = [
   { path: 'admin', loadChildren: './admin-module/admin-module.module' },
   { path: 'postcreate', component: PostcreateComponent },
+  { path: 'postupdate/:id', component: PostcreateComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'posts/:id', component: PostsDetailComponent }
 ]

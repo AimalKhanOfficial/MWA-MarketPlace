@@ -52,6 +52,28 @@ router.route('/posts/add')
 
   });
 
+router.route('/posts/update/:id')
+  .post(jsonParser, function (req, res, next) {
+
+    console.log(req.body);
+
+    updatePost(req, res);
+
+  });
+
+function  updatePost(req,res){
+
+  var query = connection.Post.update({ _id: req.params.id }, req.body , function (err, posts) {
+    if (err) {
+      console.log(err);
+      res.json("err");
+    }
+    else {
+      console.log("updated");
+      res.status(200).json({"status":"1"});
+    }
+  });
+}
 
 function addPost(pObj, pRes) {
 

@@ -81,6 +81,12 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                 </a>
                             </li>
                             <li routerLinkActive = "active current">
+
+                                <a [routerLink]="['/postupdate/:id']" class="hyper ">
+                                    <span>update Post</span>
+                                </a>
+                            </li>
+                            <li routerLinkActive = "active current">
                                 <a [routerLink]="['/posts']" class="hyper ">
                                     <span>List Post</span>
                                 </a>
