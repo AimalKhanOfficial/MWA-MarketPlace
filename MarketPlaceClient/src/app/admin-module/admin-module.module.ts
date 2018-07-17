@@ -55,6 +55,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import 'hammerjs';
 import { MainAdminComponent } from './main-admin/main-admin.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   exports: [
@@ -96,7 +97,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: []
+  declarations: [LogoutComponent]
 })
 export class DemoMaterialModule { }
 
@@ -112,7 +113,8 @@ export class DemoMaterialModule { }
         children: [
           { path: 'users', component: UsersComponent },
           { path: 'approvePosts', component: ApprovePostsComponent },
-          { path: 'analytics', component: AnalyticsComponent }
+          { path: 'analytics', component: AnalyticsComponent }, 
+          { path: 'logout', component: LogoutComponent }
         ]
       },
     ]),
