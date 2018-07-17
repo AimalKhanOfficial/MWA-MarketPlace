@@ -1,10 +1,39 @@
-<div class="detail_form" *ngIf="isSelected">
-  <h2>You selected: {{selectedPost.title}} with Details</h2>
-  <div>
-    <label>Owner's name: </label>{{selectedPost.user_name}}
-    <br/>
-    <label>Description: </label>{{selectedPost.description}}
-    <br/>
-    <label>Price: </label>{{selectedPost.price}}
+<div *ngIf="isSelected" class="container">
+  <h2>Details of {{selectedPost.title}}:</h2>
+  <div class="row">
+    <div class="col-md-2">
+      <span *ngFor="let img of selectedPost.image_urls">
+        <img class="card-img-top" alt="Thumbnail [20%x50]" style="height: 140px; width: 100%; display: block;" src="{{img}}" data-holder-rendered="true">
+      </span>
+    </div>
+    <div class="col-md-4">
+      <span class="pull-right">
+        <label>Owner's name: </label>{{selectedPost.user_name}}
+        <br/>
+        <label>Description: </label>{{selectedPost.description}}
+        <br/>
+        <label>Price: </label>{{selectedPost.price}}</span>
+    </div>
   </div>
 </div>
+
+<mat-card class="example-card">
+  {{selectedPost.title}}
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+  <div *ngFor="let img of selectedPost.image_urls">
+    <img mat-card-image alt="" src="{{img}}" data-holder-rendered="true">
+  </div>
+
+  <mat-card-content>
+    <p>
+      Owner: {{selectedPost.user_name}}
+    </p>
+    <p>Price: {{selectedPost.price}}</p>
+    <p>
+      Description: {{selectedPost.description}}
+    </p>
+  </mat-card-content>
+</mat-card>

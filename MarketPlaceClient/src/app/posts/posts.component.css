@@ -1,8 +1,6 @@
-/* Structure */
+/* Structure */ 
 table {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 100%;
   }
 
 .mat-form-field {
@@ -10,4 +8,10 @@ table {
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
+  }
+
+.table-div {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
   }

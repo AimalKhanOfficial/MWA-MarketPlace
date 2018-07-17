@@ -118,7 +118,7 @@ const My_Routes = [
     MatTreeModule,
   ],
   declarations: [PostsComponent, PostsDetailComponent, PostupdateComponent, ProfileupdateComponent],
-  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes),]
+  imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes), MatPaginatorModule, MatCardModule]
 })
 export class DemoMaterialModule { }
 
