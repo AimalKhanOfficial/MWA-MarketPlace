@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       if (!res.auth) {
         this.loginRes = "Invalid username or password";
       } else {
+        this.loginRes = "Success, please add navigation to this";
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(JSON.stringify(res.token));
 
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
         store.dispatch(onUserLogin(decodedToken));
         //Session Storage
         sessionStorage.setItem("loggedInUserDetails", JSON.stringify(decodedToken));
+
         sessionStorage.setItem("token", res.token);
 
         if (decodedToken.isVerified == 0) {
