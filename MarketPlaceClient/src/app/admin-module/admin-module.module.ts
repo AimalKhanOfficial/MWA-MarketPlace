@@ -54,6 +54,7 @@ import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import 'hammerjs';
 import { MainAdminComponent } from './main-admin/main-admin.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 @NgModule({
   exports: [
@@ -110,7 +111,9 @@ export class DemoMaterialModule { }
         path: 'admin', component: MainAdminComponent,
         children: [
           { path: 'users', component: UsersComponent },
-          { path: 'approvePosts', component: ApprovePostsComponent }]
+          { path: 'approvePosts', component: ApprovePostsComponent },
+          { path: 'analytics', component: AnalyticsComponent }
+        ]
       },
     ]),
     NoopAnimationsModule,
@@ -121,7 +124,7 @@ export class DemoMaterialModule { }
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
     NgbModule
   ],
-  declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent],
+  declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent,AnalyticsComponent],
   bootstrap: [MainAdminComponent]
 })
 export class AdminModuleModule { }

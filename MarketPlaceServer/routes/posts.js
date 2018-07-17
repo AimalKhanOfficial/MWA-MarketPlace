@@ -52,8 +52,8 @@ router.route('/posts/add')
 
   });
 
-router.route('/posts/update/:id')
-  .post(jsonParser, function (req, res, next) {
+router.route('/posts/:id')
+  .put(jsonParser, function (req, res, next) {
 
     console.log(req.body);
 

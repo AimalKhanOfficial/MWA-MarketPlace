@@ -130,6 +130,7 @@ export class DemoMaterialModule { }
     PostupdateComponent
   ],
   imports: [
+    ChartModule,
     BrowserModule,
     FormsModule,
     HttpModule,

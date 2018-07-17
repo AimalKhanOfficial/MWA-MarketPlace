@@ -54,18 +54,22 @@ export class PostcreateComponent {
   onSubmit() {
     console.log("this.myForm.value.userData");
 
+    let userObj = JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
+
+    //userObj.location[0].coorinates[0]
+
     var obj = {
       "title": this.myForm.value.title, "price": this.myForm.value.price,
-      "condition": this.myForm.value.condition, "category": this.myForm.value.category,
+      "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.value == this.myForm.value.category) },
       "is_New": this.myForm.value.is_New,
       "description": this.myForm.value.description,
-      "location": { "coordinates": [12.312213, 23.34223423], "s_type": "point" },
-      "last_updated": new Date, "status": 1,
+      "location": { "coordinates": [userObj.location[0].coorinates[0], userObj.location[0].coorinates[1]], "s_type": "point" },
+      "last_updated": new Date, "status": { "key": 1, "value": "not approved" },
       "isDeleted": false, "user_id": 12,
       "user_name": "user name",
       "contact_number": "5349",
       "post_date": new Date,
-      "image_urls":  this.newImagesNames
+      "image_urls": this.newImagesNames
     };
 
 
@@ -81,7 +85,7 @@ export class PostcreateComponent {
 
   onFileChanged(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
-    this.uploadStatus="";
+    this.uploadStatus = "";
   }
 
   onUpload() {
@@ -92,16 +96,16 @@ export class PostcreateComponent {
 
     for (let i = 0; i < files.length; i++) {
 
-      let imgName= this.guid() + "." + files[i].name.split('.')[1];
+      let imgName = this.guid() + "." + files[i].name.split('.')[1];
       this.newImagesNames.push(imgName);
 
-      formData.append("uploads[]", files[i],imgName);
+      formData.append("uploads[]", files[i], imgName);
     }
     console.log('form data variable :   ' + formData.toString());
 
-    this.fileupload.upload(formData).subscribe((res)=>{
+    this.fileupload.upload(formData).subscribe((res) => {
       this.myForm.get('myvalidator').setValue("sdfsd");
-      this.uploadStatus="Done";
+      this.uploadStatus = "Done";
     });
   }
   guid() {
