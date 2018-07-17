@@ -63,6 +63,8 @@ import { UserModuleModule } from './user-module/user-module.module';
 import { PostsComponent } from './posts/posts.component';
 import { ForgetPasswordComponent } from './user-module/forget-password/forget-password.component';
 import { PostsDetailComponent } from './posts/posts.details.component';
+import { PostupdateComponent } from './postupdate/postupdate.component';
+import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 
 
 const My_Routes = [
@@ -112,7 +114,7 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [PostsComponent, PostsDetailComponent],
+  declarations: [PostsComponent, PostsDetailComponent, PostupdateComponent, ProfileupdateComponent],
   imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes),]
 })
 export class DemoMaterialModule { }
