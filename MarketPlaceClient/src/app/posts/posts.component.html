@@ -7,9 +7,11 @@
     <ng-container matColumnDef="image_urls">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <span *ngFor="let img of element.image_urls">
-          <img alt="" style="height: 70px; width: 100px;" src="{{img}}" data-holder-rendered="true">
-        </span>
+            <img alt=""  style="height: 70px; width: 100px;"
+            src="{{'https://firebasestorage.googleapis.com/v0/b/mwamp-cffcf.appspot.com/o/'+
+            element.image_urls[0]+
+              '?alt=media&token=cb68bddb-5097-420f-a84e-072498e580fb'}}" data-holder-rendered="true">
+          <!-- <img alt="" style="height: 70px; width: 100px;" src="{{img}}" data-holder-rendered="true"> -->
       </td>
     </ng-container>
 
