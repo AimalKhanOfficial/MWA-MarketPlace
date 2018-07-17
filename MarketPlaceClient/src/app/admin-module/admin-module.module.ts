@@ -107,16 +107,16 @@ export class DemoMaterialModule { }
     BrowserModule,
     CommonModule,
     RouterModule.forChild([
-      { path: 'admin', component: MainAdminComponent },
+
       {
         path: 'admin', component: MainAdminComponent,
         children: [
           { path: 'users', component: UsersComponent },
           { path: 'approvePosts', component: ApprovePostsComponent },
-          { path: 'analytics', component: AnalyticsComponent }, 
+          { path: 'analytics', component: AnalyticsComponent },
           { path: 'logout', component: LogoutComponent }
         ]
-      },
+      }
     ]),
     NoopAnimationsModule,
     DemoMaterialModule,
@@ -126,7 +126,7 @@ export class DemoMaterialModule { }
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
     NgbModule
   ],
-  declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent,AnalyticsComponent],
+  declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent, AnalyticsComponent],
   bootstrap: [MainAdminComponent]
 })
 export class AdminModuleModule { }

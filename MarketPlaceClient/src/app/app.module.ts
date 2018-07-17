@@ -68,14 +68,17 @@ import { ForgetPasswordComponent } from './user-module/forget-password/forget-pa
 import { PostsDetailComponent } from './posts/posts.details.component';
 import { PostupdateComponent } from './postupdate/postupdate.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 const My_Routes = [
-  { path: 'admin', loadChildren: './admin-module/admin-module.module' },
-  { path: 'postcreate', component: PostcreateComponent },
-  { path: 'postupdate/:id', component: PostupdateComponent },
-  { path: 'posts', component: PostsComponent },
-  { path: 'posts/:id', component: PostsDetailComponent }
+  // { path: 'admin', loadChildren: './admin-module/admin-module.module' },
+  // { path: 'user', loadChildren: './user-module/user-module.module' },
+  { path: '', component: LandingPageComponent }
+  // { path: 'postcreate', component: PostcreateComponent },
+  // { path: 'postupdate/:id', component: PostupdateComponent },
+  // { path: 'posts', component: PostsComponent },
+  // { path: 'posts/:id', component: PostsDetailComponent }
 ]
 
 @NgModule({
@@ -118,7 +121,7 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [PostsComponent, PostsDetailComponent, ProfileupdateComponent],
+  declarations: [PostsComponent, PostsDetailComponent, ProfileupdateComponent, LandingPageComponent],
   imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes), MatPaginatorModule, MatCardModule]
 })
 export class DemoMaterialModule { }
