@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 app.use(cors());
 app.use((req, res, next) => {
   console.log("New Request", req.url);
-  if (req.url === "/users/login" || req.url === "/users/register" || req.url === "/favicon.ico" || req.url.includes("/posts")) {
+  if (req.url === "/users/login" || req.includes("/file") || req.url === "/users/register" || req.url === "/api/adminPosts" || req.url === "/api/users" || req.url === "/favicon.ico" || req.url.includes("/posts")) {
     next();
   }
   else {
