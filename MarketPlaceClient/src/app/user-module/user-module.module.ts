@@ -12,6 +12,7 @@ import { UserNavComponent } from './user-nav/user-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { PostcreateComponent } from '../postcreate/postcreate.component';
+import { ProfileupdateComponent } from '../profileupdate/profileupdate.component';
 import { PostupdateComponent } from '../postupdate/postupdate.component';
 import { PostsComponent } from '../posts/posts.component';
 import { PostsDetailComponent } from '../posts/posts.details.component';
@@ -32,6 +33,7 @@ import { LogoutComponent } from '../admin-module/logout/logout.component';
         children: [
           { path: 'postcreate', component: PostcreateComponent },
           { path: 'posts', component: PostsComponent },
+          { path: 'profile', component:  ProfileupdateComponent},
           { path: 'logout', component: LogoutComponent }
         ]
       },
