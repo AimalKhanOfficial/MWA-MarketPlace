@@ -15,6 +15,7 @@ import { PostcreateComponent } from '../postcreate/postcreate.component';
 import { PostupdateComponent } from '../postupdate/postupdate.component';
 import { PostsComponent } from '../posts/posts.component';
 import { PostsDetailComponent } from '../posts/posts.details.component';
+import { LogoutComponent } from '../admin-module/logout/logout.component';
 
 
 
@@ -31,10 +32,10 @@ import { PostsDetailComponent } from '../posts/posts.details.component';
         children: [
           { path: 'postcreate', component: PostcreateComponent },
           { path: 'posts', component: PostsComponent },
-          { path: 'postupdate/:id', component: PostupdateComponent }
+          { path: 'postupdate/:id', component: PostupdateComponent },
+          { path: 'logout', component: LogoutComponent }
         ]
       },
-
       { path: 'posts/:id', component: PostsDetailComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
