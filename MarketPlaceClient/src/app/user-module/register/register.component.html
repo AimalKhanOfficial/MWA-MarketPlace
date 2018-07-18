@@ -2,6 +2,7 @@
   <h1>Register</h1>
   <br>
   <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
+      <label>Email: </label>
     <input type="email" formControlName="email" placeholder="Email" />
     <span style="color: red" *ngIf="!this.registerationForm.get('email').valid && this.registerationForm.get('email').touched">
       <br/> Invalid Email
@@ -11,15 +12,18 @@
     </span>
     <br/>
     <br/>
+    <label>User Name: </label>
     <input type="text" formControlName="userName" placeholder="Username" />
     <br/>
     <br/>
+    <label>Password: </label>
     <input type="password" formControlName="passWord" placeholder="Password" />
     <span style="color: red" *ngIf="!this.registerationForm.get('passWord').valid && this.registerationForm.get('passWord').touched">
       <br/> Must be atleast 5 alphabets
     </span>
     <br/>
     <br/>
+    <label>Contact Number: </label>
     <input type="number" formControlName="contactNumber" placeholder="Contact Number" />
     <br/>
     <br/>

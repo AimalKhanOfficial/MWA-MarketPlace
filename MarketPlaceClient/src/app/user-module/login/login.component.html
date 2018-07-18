@@ -5,12 +5,14 @@
   <h1>Log-in</h1>
   <br/>
   <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+    <label>Email: </label>
     <input formControlName="email" placeholder="email" type="text" />
     <span style="color: red" *ngIf="!this.loginFormGroup.get('email').valid && this.loginFormGroup.get('email').touched">
       <br/> Invalid Email
     </span>
     <br/>
     <br/>
+    <label>Password: </label>
     <input formControlName="password" placeholder="password" type="password" />
     <br/>
     <br/>
