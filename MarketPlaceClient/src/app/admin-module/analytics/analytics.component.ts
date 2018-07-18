@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'angular-highcharts';
+import { Chart, Highcharts } from 'angular-highcharts';
 import { HttpClient } from '@angular/common/http';
 import { AnalyticsService } from '../../services/analytics.service';
 
@@ -12,9 +12,8 @@ export class AnalyticsComponent implements OnInit {
 
   chart;
   customVerificationData;
+  producsPerCategory;
   constructor(private http: HttpClient, private analyticsService: AnalyticsService) {
-    //charts
-
     this.analyticsService.userVerificationsChart(this.http).subscribe(data => {
       this.chart = new Chart({
         chart: {
