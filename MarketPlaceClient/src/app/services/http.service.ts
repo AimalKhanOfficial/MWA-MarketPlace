@@ -15,17 +15,19 @@ export class HttpService {
     findAllPosts(): Observable<any> {
         return this.http.get(this.url + "/posts");
     }
-
+    findAllAdminPosts(): Observable<any> {
+        return this.http.get(this.url + "/adminPosts");
+    }
     findPostById(id): Observable<any> {
         return this.http.get(this.url + "/posts/" + id);
     }
 
-    deletePost(id):Observable<any> {
+    deletePost(id): Observable<any> {
         return this.http.delete(this.url + "/posts/" + id);
     }
 
     findAllUsers(): Observable<any> {
-        return this.http.get(this.url + "/users");  
+        return this.http.get(this.url + "/users");
     }
-        
+
 }

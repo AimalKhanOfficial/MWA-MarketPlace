@@ -21,7 +21,7 @@ export class ApprovePostsComponent implements OnInit {
       .then(function (response) {
         console.log(response);
         this.activationResponse = response;
-        this.router.navigate(['admin']);
+
 
       })
       .catch(function (error) {
@@ -33,7 +33,7 @@ export class ApprovePostsComponent implements OnInit {
   }
 
   initializePostList() {
-    this.postListService.getAllPosts((err, list) => {
+    this.postListService.getAllAdminPosts((err, list) => {
       if (!err) {
         this.posts = list;
 
