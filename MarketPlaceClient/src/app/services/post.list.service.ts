@@ -18,7 +18,15 @@ export class PostListService {
             }
         });
     }
-
+    getAllAdminPosts(callback) {
+        this.httpService.findAllAdminPosts().subscribe(list => {
+            if (list !== null) {
+                return callback(null, list.json());
+            } else {
+                return callback("Not Found", null);
+            }
+        });
+    }
     getPostById(id, callback) {
         this.httpService.findPostById(id).subscribe(post => {
             if (post !== null) {

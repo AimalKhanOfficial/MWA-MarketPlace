@@ -33,7 +33,7 @@ var postSchema = new Schema({
     is_New: Number,
     isDeleted: Boolean,
     image_urls: [String],
-    user_id: Number,
+    user_id: String,
     user_name: String,
     contact_number: String,
     location: {

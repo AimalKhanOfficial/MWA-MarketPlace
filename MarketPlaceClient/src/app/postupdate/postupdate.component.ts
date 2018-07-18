@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/PostService';
 import { Fileupload } from '../services/Fileupload';
 import { ActivatedRoute } from '@angular/router';
+import {Router} from '@angular/router'
 
 import {
   FormGroup,
@@ -20,7 +21,7 @@ import { map } from 'rxjs/operators';
 })
 export class PostupdateComponent implements OnInit {
   myForm: FormGroup;
-  conditions = [{ key: 1, value: 'New' }, { key: 2, value: 'Used' }];
+  conditions = [{ key: 1, value: 'Excelent' }, { key: 2, value: 'Good' }, { key: 3, value: 'Fair' }];
   categories = [{ key: 1, value: 'cars' }, { key: 2, value: 'devices' }];
   //status 1-not approved 2-available 3-sold
 
@@ -29,7 +30,7 @@ export class PostupdateComponent implements OnInit {
   newImagesNames: String[] = [];
   id;
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload, private activRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload, private activRoute: ActivatedRoute,private router:Router) {
 
     this.myForm = formBuilder.group({
 
@@ -39,7 +40,7 @@ export class PostupdateComponent implements OnInit {
         Validators.required]
       ],
       'category': ['', Validators.required],
-      'is_New': ['', Validators.required],
+      'is_New': ['1', Validators.required],
       'image_urls': ['', Validators.required],
       'description': ['', Validators.required],
       "myvalidator": ['', Validators.required]
@@ -63,8 +64,8 @@ export class PostupdateComponent implements OnInit {
         this.myForm.get('title').setValue(data.title);
         this.myForm.get('price').setValue(data.price);
         this.myForm.get('condition').setValue(data.condition);
-        this.myForm.get('category').setValue(data.category);
-        this.myForm.get('is_New').setValue(data.is_New);
+        this.myForm.get('category').setValue(data.category.key);
+        this.myForm.get('is_New').setValue(data.is_New.toString());
         this.myForm.get('description').setValue(data.description);
       });
 
@@ -77,28 +78,27 @@ export class PostupdateComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("this.myForm.value.userData");
 
-    let obj2 = sessionStorage.getItem("loggedInUserDetails");
-
+    let userObj = JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
 
     var obj = {
       "title": this.myForm.value.title, "price": this.myForm.value.price,
-      "condition": this.myForm.value.condition, "category": { "ckey": this.myForm.value.category, "cvalue": this.categories.filter(x => x.value == this.myForm.value.category) },
+      "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.key == this.myForm.value.category)[0].value },
       "is_New": this.myForm.value.is_New,
       "description": this.myForm.value.description,
-      "location": { "coordinates": [12.312213, 23.34223423], "s_type": "point" },
-      "last_updated": new Date, "status": { "ckey": 1, "cvalue": "not approved" },
-      "isDeleted": false, "user_id": 12,
-      "user_name": "user name",
-      "contact_number": "5349",
+      "location": { "coordinates": [userObj.location[0].coorinates[0], userObj.location[0].coorinates[1]], "s_type": "point" },
+      "last_updated": new Date, "status": { "key": 1, "value": "not approved" },
+      "isDeleted": false, "user_id": userObj._id,
+      "user_name": userObj.userName,
+      "contact_number": userObj.contactNumber,
       "post_date": new Date,
       "image_urls": this.newImagesNames
     };
 
     this.postService.updatePost(this.id, obj).then((data) => {
 
-      console.log(data)
+      console.log(data);
+      this.router.navigate(['/user/posts']);
 
     }).catch((err) => {
 

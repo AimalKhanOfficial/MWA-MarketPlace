@@ -32,11 +32,11 @@ import { LogoutComponent } from '../admin-module/logout/logout.component';
         children: [
           { path: 'postcreate', component: PostcreateComponent },
           { path: 'posts', component: PostsComponent },
-          { path: 'postupdate/:id', component: PostupdateComponent },
           { path: 'logout', component: LogoutComponent }
         ]
       },
       { path: 'posts/:id', component: PostsDetailComponent },
+      { path: 'postupdate/:id', component: PostupdateComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login/forgetPassword', component: ForgetPasswordComponent },

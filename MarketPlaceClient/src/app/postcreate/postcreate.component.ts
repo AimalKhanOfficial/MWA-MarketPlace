@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PostService } from '../services/PostService';
 import { Fileupload } from '../services/Fileupload';
-
+import {Router} from '@angular/router'
 
 import {
   FormGroup,
@@ -20,14 +20,14 @@ import { map } from 'rxjs/operators';
 })
 export class PostcreateComponent {
   myForm: FormGroup;
-  conditions = [{ key: 1, value: 'New' }, { key: 2, value: 'Used' }];
+  conditions = [{ key: 1, value: 'Excelent' }, { key: 2, value: 'Good' }, { key: 3, value: 'Fair' }];
   categories = [{ key: 1, value: 'cars' }, { key: 2, value: 'devices' }];
   //status 1-not approved 2-available 3-sold
   filesToUpload: Array<File>;
   uploadStatus;
   newImagesNames: String[] = [];
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload) {
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload,private router:Router) {
 
 
     this.myForm = formBuilder.group({
@@ -52,22 +52,19 @@ export class PostcreateComponent {
   }
 
   onSubmit() {
-    console.log("this.myForm.value.userData");
 
     let userObj = JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
 
-    //userObj.location[0].coorinates[0]
-
     var obj = {
       "title": this.myForm.value.title, "price": this.myForm.value.price,
-      "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.value == this.myForm.value.category) },
+      "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.key == this.myForm.value.category)[0].value },
       "is_New": this.myForm.value.is_New,
       "description": this.myForm.value.description,
       "location": { "coordinates": [userObj.location[0].coorinates[0], userObj.location[0].coorinates[1]], "s_type": "point" },
       "last_updated": new Date, "status": { "key": 1, "value": "not approved" },
-      "isDeleted": false, "user_id": 12,
-      "user_name": "user name",
-      "contact_number": "5349",
+      "isDeleted": false, "user_id": userObj._id,
+      "user_name": userObj.userName,
+      "contact_number": userObj.contactNumber,
       "post_date": new Date,
       "image_urls": this.newImagesNames
     };
@@ -76,6 +73,7 @@ export class PostcreateComponent {
     this.postService.addPost(obj).then((data) => {
 
       console.log(data)
+      this.router.navigate(['/user/posts']);
 
     }).catch((err) => {
 

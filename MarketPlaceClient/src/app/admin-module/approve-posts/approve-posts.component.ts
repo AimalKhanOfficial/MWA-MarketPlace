@@ -3,6 +3,7 @@ import { PostListService } from '../../services/post.list.service';
 import { PostService } from '../../services/PostService';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { map } from '../../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-approve-posts',
@@ -11,29 +12,24 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ApprovePostsComponent implements OnInit {
   posts: any[];
-  activationResponse = "";
 
   constructor(private postListService: PostListService, private postService: PostService, private router: Router) { }
 
   activatePost(id: string) {
     console.log(id);
     this.postService.activatePost(id)
-      .then(function (response) {
-        console.log(response);
-        this.activationResponse = response;
-        this.router.navigate(['admin']);
+      .pipe(
+        map((res: Response) => res.json())
+      ).subscribe(data => {
+        if (data === "Post Activated") {
+          this.ngOnInit();
 
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        }
+      }
+      )
   }
   ngOnInit() {
-    this.initializePostList();
-  }
-
-  initializePostList() {
-    this.postListService.getAllPosts((err, list) => {
+    this.postListService.getAllAdminPosts((err, list) => {
       if (!err) {
         this.posts = list;
 
