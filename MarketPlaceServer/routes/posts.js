@@ -6,7 +6,6 @@ var connection = require('../dbconnection/dbconfig');
 
 router.get('/posts', (req, res, next) => {
   // var query = connection.Post.find({}).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 1 });
-  console.log("Heyaaaaaaaaaaaaaaaaaaaaaaa");
   connection.Post.find({ "status.key": 2, isDeleted: false }, function (err, list) {
     if (err) throw err;
     console.log(list);
