@@ -6,12 +6,18 @@ var connection = require('../dbconnection/dbconfig');
 
 router.get('/posts', (req, res, next) => {
   // var query = connection.Post.find({}).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 1 });
-  connection.Post.find({"status.key":2, isDeleted: false}, function (err, list) {
+  connection.Post.find({ "status.key": 2, isDeleted: false }, function (err, list) {
     if (err) throw err;
     return res.json(list);
   })
 })
-
+router.get('/adminPosts', (req, res, next) => {
+  // var query = connection.Post.find({}).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 1 });
+  connection.Post.find({}, function (err, list) {
+    if (err) throw err;
+    return res.json(list);
+  })
+})
 router.get('/posts/:id', (req, res, next) => {
   // var query = connection.Post.find({}).findOne({ '_id': req.params.id }).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 1 });
   connection.Post.find({}).findOne({ '_id': req.params.id }, function (err, data) {
@@ -22,11 +28,11 @@ router.get('/posts/:id', (req, res, next) => {
 
 router.delete('/posts/:id', (req, res, next) => {
   connection.Post.update({ _id: req.params.id }, { $set: { isDeleted: true } }, function (err, data) {
-      if (!err) {
-          return res.status(200).json(data);
-      } else {
-          return res.status(500).send(err);
-      }    
+    if (!err) {
+      return res.status(200).json(data);
+    } else {
+      return res.status(500).send(err);
+    }
   });
 });
 
@@ -71,16 +77,16 @@ router.route('/posts/:id')
 
   });
 
-function  updatePost(req,res){
+function updatePost(req, res) {
 
-  var query = connection.Post.update({ _id: req.params.id }, req.body , function (err, posts) {
+  var query = connection.Post.update({ _id: req.params.id }, req.body, function (err, posts) {
     if (err) {
       console.log(err);
       res.json("err");
     }
     else {
       console.log("updated");
-      res.status(200).json({"status":"1"});
+      res.status(200).json({ "status": "1" });
     }
   });
 }
