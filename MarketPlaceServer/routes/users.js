@@ -94,7 +94,6 @@ router.post("/login", [
   console.log("The token is ", process.env.JWT_PRIVATE);
   connection.User.find({ email: req.body.email, passWord: req.body.password }, function (err, user) {
     if (user.length > 0) {
-      console.log(user[0]);
       return res.json({
         auth: true,
         token: jwt.sign(user[0].toJSON(), process.env.JWT_PRIVATE)
@@ -124,9 +123,7 @@ router.post("/register", [
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.mapped() });
   }
-  console.log("API", req.body.long);
   var verificationCode = utilities.generateVerificationCode();
-  console.log(req.body.locationUser);
   var newUser = new connection.User({
     userName: req.body.userName,
     passWord: req.body.passWord,

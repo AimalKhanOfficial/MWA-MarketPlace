@@ -3,13 +3,14 @@ import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs';
 import { map, delay } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class Fileupload {
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   upload(uploadData) {
     return this.http.post('http://localhost:3000/imgapi/file-upload', uploadData)

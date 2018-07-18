@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
@@ -18,6 +18,7 @@ import { PostsComponent } from '../posts/posts.component';
 import { PostsDetailComponent } from '../posts/posts.details.component';
 import { LogoutComponent } from '../admin-module/logout/logout.component';
 import { UserComponentsGuard } from '../guards/user-components.guard';
+import { AuthInterceptor } from '../interceptors/AuthInterceptor';
 
 
 
@@ -54,6 +55,11 @@ import { UserComponentsGuard } from '../guards/user-components.guard';
   ],
   declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, VerifyUserComponent, UserNavComponent]
   ,
-  bootstrap: [UserNavComponent]
+  bootstrap: [UserNavComponent],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }]
 })
 export class UserModuleModule { }

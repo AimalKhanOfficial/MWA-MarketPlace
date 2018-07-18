@@ -57,6 +57,8 @@ import { MainAdminComponent } from './main-admin/main-admin.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminComponentsGuard } from '../guards/admin-components.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../interceptors/AuthInterceptor';
 
 @NgModule({
   exports: [
@@ -128,6 +130,11 @@ export class DemoMaterialModule { }
     NgbModule
   ],
   declarations: [UsersComponent, ApprovePostsComponent, AdminNavComponent, MainAdminComponent, AnalyticsComponent],
-  bootstrap: [MainAdminComponent]
+  bootstrap: [MainAdminComponent], 
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }]
 })
 export class AdminModuleModule { }

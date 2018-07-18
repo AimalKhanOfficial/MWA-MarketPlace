@@ -69,6 +69,8 @@ import { PostsDetailComponent } from './posts/posts.details.component';
 import { PostupdateComponent } from './postupdate/postupdate.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/AuthInterceptor';
 
 
 const My_Routes = [
@@ -145,7 +147,11 @@ export class DemoMaterialModule { }
     ReactiveFormsModule,
     UserModuleModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

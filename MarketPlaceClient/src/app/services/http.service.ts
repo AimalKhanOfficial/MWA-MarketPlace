@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ export class HttpService {
 
     private url = 'http://localhost:3000/api';
 
-    constructor(public http: Http) {
+    constructor(public http: HttpClient) {
     }
 
     findAllPosts(): Observable<any> {

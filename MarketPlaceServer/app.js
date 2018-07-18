@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
-
+var jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -26,18 +26,57 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 app.use(cors());
+app.use((req, res, next) => {
+  console.log("New Request", req.url);
+  if (req.url === "/users/login" || req.url === "/users/register" || req.url === "/favicon.ico") {
+    next();
+  }
+  else {
+    var token = null;
+    var bits = req.headers.authorization.split(' ');
+    console.log("Token", req.headers.authorization);
+    console.log("bits", bits);
+    if (bits.length == 2) {
+      console.log("here1");
+      var scheme = bits[0];
+      var credentials = bits[1];
+
+      if (/^Bearer$/i.test(scheme)) {
+        console.log("here2");
+        token = credentials;
+        jwt.verify(token, process.env.JWT_PRIVATE, function (err, decoded) {
+          console.log("err", err);
+          console.log("decoded", decoded);
+          if (err) {
+            console.log(err);
+            res.status(200).json("Invalid Token");
+          }
+          else {
+            console.log("No error!");
+            next();
+          }
+        });
+      }
+    }
+    else {
+      res.status(401).json("Invalid Token format");
+    }
+  }
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', postsRouter);
 app.use('/imgapi', fileupload);
 app.use('/analytics', analyticsRouter);
+
+
 
 
 // catch 404 and forward to error handler
