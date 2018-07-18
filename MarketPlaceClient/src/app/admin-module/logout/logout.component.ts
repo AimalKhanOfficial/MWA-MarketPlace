@@ -10,7 +10,7 @@ export class LogoutComponent implements OnInit {
 
   constructor(private router: Router) { 
     sessionStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 
   ngOnInit() {
