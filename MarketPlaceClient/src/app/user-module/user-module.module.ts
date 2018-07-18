@@ -30,12 +30,12 @@ import { PostsDetailComponent } from '../posts/posts.details.component';
         path: 'user', component: UserNavComponent,
         children: [
           { path: 'postcreate', component: PostcreateComponent },
-          { path: 'posts', component: PostsComponent },
-          { path: 'postupdate/:id', component: PostupdateComponent }
+          { path: 'posts', component: PostsComponent }
         ]
       },
 
       { path: 'posts/:id', component: PostsDetailComponent },
+      { path: 'postupdate/:id', component: PostupdateComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login/forgetPassword', component: ForgetPasswordComponent },
