@@ -151,10 +151,9 @@ router.post("/register", [
       res.status(500).json("Something went wrong, please try again later!");
     }
     else {
-      //Email Commented out becuz of NO ACCESS TOKEN!
-      // utilities.sendMail(req.body.email, "Registration Successful", `
-      //   Hey there ${req.body.userName} <br/>
-      //     Use ${verificationCode} to verify your account!`);
+      utilities.sendMail(req.body.email, "Registration Successful", `
+        Hey there ${req.body.userName} <br/>
+          Use ${verificationCode} to verify your account!`);
       res.status(200).json("Registration successful!");
     }
   });

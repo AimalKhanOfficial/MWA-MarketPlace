@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
         store.dispatch(onUserLogin(decodedToken));
         //Session Storage
         sessionStorage.setItem("loggedInUserDetails", JSON.stringify(decodedToken));
-
+        sessionStorage.setItem("isLoggedIn", "true");
         sessionStorage.setItem("token", res.token);
-
+        sessionStorage.setItem("role", decodedToken.role);
         if (decodedToken.isVerified == 0) {
           this.router.navigate(['verifyUser']);
         }

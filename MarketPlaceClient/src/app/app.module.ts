@@ -75,10 +75,7 @@ const My_Routes = [
   // { path: 'admin', loadChildren: './admin-module/admin-module.module' },
   // { path: 'user', loadChildren: './user-module/user-module.module' },
   { path: '', component: LandingPageComponent }
-  // { path: 'postcreate', component: PostcreateComponent },
-  // { path: 'postupdate/:id', component: PostupdateComponent },
-  // { path: 'posts', component: PostsComponent },
-  // { path: 'posts/:id', component: PostsDetailComponent }
+
 ]
 
 @NgModule({

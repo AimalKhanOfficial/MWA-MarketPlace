@@ -33,7 +33,7 @@ import { LogoutComponent } from '../admin-module/logout/logout.component';
         children: [
           { path: 'postcreate', component: PostcreateComponent },
           { path: 'posts', component: PostsComponent },
-          { path: 'profile', component:  ProfileupdateComponent},
+          { path: 'profile', component: ProfileupdateComponent },
           { path: 'logout', component: LogoutComponent }
         ]
       },
