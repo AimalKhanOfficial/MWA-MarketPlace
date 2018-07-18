@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       if (!res.auth) {
         this.loginRes = "Invalid username or password";
       } else {
-        this.loginRes = "Success, please add navigation to this";
+        this.router.navigate(['user']);
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(JSON.stringify(res.token));
 
