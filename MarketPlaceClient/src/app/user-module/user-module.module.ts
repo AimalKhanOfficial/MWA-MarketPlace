@@ -17,6 +17,7 @@ import { PostupdateComponent } from '../postupdate/postupdate.component';
 import { PostsComponent } from '../posts/posts.component';
 import { PostsDetailComponent } from '../posts/posts.details.component';
 import { LogoutComponent } from '../admin-module/logout/logout.component';
+import { UserComponentsGuard } from '../guards/user-components.guard';
 
 
 
@@ -27,9 +28,9 @@ import { LogoutComponent } from '../admin-module/logout/logout.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild([
-      { path: 'user', component: UserNavComponent },
+      { path: 'user', component: UserNavComponent, canActivate: [UserComponentsGuard] },
       {
-        path: 'user', component: UserNavComponent,
+        path: 'user', component: UserNavComponent, canActivate: [UserComponentsGuard],
         children: [
           { path: 'postcreate', component: PostcreateComponent },
           { path: 'posts', component: PostsComponent },
@@ -37,8 +38,8 @@ import { LogoutComponent } from '../admin-module/logout/logout.component';
           { path: 'logout', component: LogoutComponent }
         ]
       },
-      { path: 'posts/:id', component: PostsDetailComponent },
-      { path: 'postupdate/:id', component: PostupdateComponent },
+      { path: 'posts/:id', component: PostsDetailComponent, canActivate: [UserComponentsGuard] },
+      { path: 'postupdate/:id', component: PostupdateComponent, canActivate: [UserComponentsGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login/forgetPassword', component: ForgetPasswordComponent },

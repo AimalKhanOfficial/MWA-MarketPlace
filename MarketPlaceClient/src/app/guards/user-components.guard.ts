@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminComponentsGuard implements CanActivate {
+export class UserComponentsGuard implements CanActivate {
 
   constructor(private router: Router) { }
 
@@ -13,8 +13,9 @@ export class AdminComponentsGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (sessionStorage.getItem("isLoggedIn") == "true") {
-      if (sessionStorage.getItem("role") != "1") {
-        this.router.navigate(['user']);
+      console.log(sessionStorage.getItem("role"))
+      if (sessionStorage.getItem("role") != "0") {
+        this.router.navigate(['admin']);
       }
     }
     else {
