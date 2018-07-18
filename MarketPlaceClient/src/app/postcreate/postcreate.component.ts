@@ -57,17 +57,17 @@ export class PostcreateComponent {
     let userObj = JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
 
     //userObj.location[0].coorinates[0]
-
+    console.log(userObj);
     var obj = {
       "title": this.myForm.value.title, "price": this.myForm.value.price,
-      "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.value == this.myForm.value.category) },
+      "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.key == this.myForm.value.category)[0].value },
       "is_New": this.myForm.value.is_New,
       "description": this.myForm.value.description,
       "location": { "coordinates": [userObj.location[0].coorinates[0], userObj.location[0].coorinates[1]], "s_type": "point" },
       "last_updated": new Date, "status": { "key": 1, "value": "not approved" },
-      "isDeleted": false, "user_id": 12,
-      "user_name": "user name",
-      "contact_number": "5349",
+      "isDeleted": false, "user_id": userObj._id,
+      "user_name": userObj.userName,
+      "contact_number": userObj.contactNumber,
       "post_date": new Date,
       "image_urls": this.newImagesNames
     };
