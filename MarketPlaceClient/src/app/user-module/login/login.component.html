@@ -1,21 +1,17 @@
+<br/>
+<br/>
 <div class="login-card">
+  <br/>
   <h1>Log-in</h1>
-  <br>
+  <br/>
   <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
-
     <input formControlName="email" placeholder="email" type="text" />
-    <span style="color: red">
-      *
-    </span>
     <span style="color: red" *ngIf="!this.loginFormGroup.get('email').valid && this.loginFormGroup.get('email').touched">
       <br/> Invalid Email
     </span>
     <br/>
     <br/>
     <input formControlName="password" placeholder="password" type="password" />
-    <span style="color: red">
-      *
-    </span>
     <br/>
     <br/>
     <input type="submit" class="login login-submit" value="Login" [disabled]="!this.loginFormGroup.valid" />
@@ -26,7 +22,6 @@
   </form>
 
   <div class="login-help">
-
     <a [routerLink]="['forgetPassword']">Forgot Password?</a>
   </div>
 </div>
