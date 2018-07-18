@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +19,18 @@ export class RegisterService {
       long: locationParam[0]
     });
   }
+
+  updateInfo(http, userNameParam, passWordParam, contactNumberParam, pUserId) {
+    return http.put("http://localhost:3000/users/update/"+pUserId, {
+      userName: userNameParam,
+      passWord: passWordParam,
+      contactNumber: contactNumberParam
+    });
+  }
+
+  getUser(http,id) {
+    return http.get('http://localhost:3000/users/' + id);
+  }
+
+  
 }

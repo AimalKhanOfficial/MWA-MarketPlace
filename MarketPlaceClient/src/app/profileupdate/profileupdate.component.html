@@ -1,3 +1,23 @@
-<p>
-  profileupdate works!
-</p>
+<br/>
+<br/>
+<div style="text-align: center">
+  <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()" class="post-form">
+
+    
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="User name" type="text" formControlName="userName">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" type="password" formControlName="passWord">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Contact Number" type="number" formControlName="contactNumber">
+    </mat-form-field>
+
+    <div>
+      <button mat-button [disabled]="!registerationForm.valid">update</button>
+      <button mat-button [routerLink]="['/user/posts']">cancel</button>
+    </div>
+
+  </form>
+</div>

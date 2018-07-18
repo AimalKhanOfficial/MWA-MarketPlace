@@ -174,4 +174,29 @@ router.get('/all', (req, res, next) => {
   });
 });
 
+
+router.route('/update/:id')
+  .put( function (req, res, next) {
+
+    console.log(req.body);
+
+    updateUser(req, res);
+
+  });
+function updateUser(req, res) {
+
+  var query = connection.User.update({ _id: req.params.id }, { $set: { userName: req.body.userName, passWord: req.body.passWord, contactNumber: req.body.contactNumber } }, function (err, user) {
+    if (err) {
+      console.log(err);
+      res.json("err");
+    }
+    else {
+      console.log("updated");
+      res.status(200).json({ "status": "1" });
+    }
+  });
+}
+
+
 module.exports = router;
+
