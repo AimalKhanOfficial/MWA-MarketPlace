@@ -21,7 +21,7 @@ export class ApprovePostsComponent implements OnInit {
       .then(function (response) {
         console.log(response);
         this.activationResponse = response;
-        this.initializePostList();
+
 
       })
       .catch(function (error) {
