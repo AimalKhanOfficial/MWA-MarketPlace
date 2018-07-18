@@ -194,5 +194,13 @@ function updateUser(req, res) {
 }
 
 
+
+router.get('/user/:id', (req, res, next) => {
+  // var query = connection.Post.find({}).findOne({ '_id': req.params.id }).select({ "title": 1, "user_name": 1, "description": 1, "price": 1, "_id": 1 });
+  connection.User.find({}).findOne({ '_id': req.params.id }, function (err, data) {
+    if (err) return res.status(500).send(err);
+    return res.json(data);
+  })
+})
 module.exports = router;
 

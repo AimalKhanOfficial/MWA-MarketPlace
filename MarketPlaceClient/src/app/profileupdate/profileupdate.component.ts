@@ -33,13 +33,14 @@ export class ProfileupdateComponent implements OnInit {
    const userObj= JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
    this.id=userObj._id;
 
+   console.log(userObj)
     if (this.id) {
 
-      console.log("yes")
       this.registrationService.getUser(this.http,this.id).subscribe((data) => {
-        this.registerationForm.get('userName').setValue(data.title);
-        this.registerationForm.get('passWord').setValue(data.price);
-        this.registerationForm.get('contactNumber').setValue(data.condition);
+
+        this.registerationForm.get('userName').setValue(data.userName);
+        this.registerationForm.get('passWord').setValue(data.passWord);
+        this.registerationForm.get('contactNumber').setValue(data.contactNumber);
       });
 
     }

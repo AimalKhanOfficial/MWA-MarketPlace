@@ -1,13 +1,14 @@
 .post-form {
     min-width: 150px;
     max-width: 500px;
-    width: 100%;
+    margin-left: 3%;
+    border: solid 2px;
+    padding: 5px;
+    width: 39%;
   }
   
   .post-full-width {
     width: 100%;
   }
 
-  .myFormContainer{
-    margin-left: 3%;
-  }
+  

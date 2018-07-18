@@ -28,8 +28,8 @@ export class RegisterService {
     });
   }
 
-  getUser(http,id) {
-    return http.get('http://localhost:3000/users/' + id);
+  getUser(http,pid) {
+    return http.get('http://localhost:3000/users/user/' + pid);
   }
 
   
