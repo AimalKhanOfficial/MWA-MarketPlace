@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
           }
           else {
             //some main page for plain user!
+            this.router.navigate(['user']);
           }
         }
 

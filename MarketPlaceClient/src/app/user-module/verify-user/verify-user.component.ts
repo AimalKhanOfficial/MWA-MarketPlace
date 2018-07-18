@@ -27,7 +27,6 @@ export class VerifyUserComponent implements OnInit {
             this.router.navigate(['admin']);
           }
           else {
-            //some main page for plain user!
             this.router.navigate(['user']);
           }
         }
