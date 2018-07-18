@@ -1,6 +1,6 @@
-<br/>
-<br/>
-<div style="text-align: center">
+<div class="login-card">
+  <h1>Register</h1>
+  <br>
   <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
     <input type="email" formControlName="email" placeholder="Email" />
     <span style="color: red">
@@ -35,7 +35,8 @@
     </span>
     <br/>
     <br/>
-    <input type="submit" [disabled]="!registerationForm.valid || !emailExistsFlag" value="Register" />
+    <input type="submit" class="login login-submit" [disabled]="!registerationForm.valid || !emailExistsFlag" value="Register"
+    />
 
     <br/>
     <span *ngIf="this.registrationStatus!=''">
