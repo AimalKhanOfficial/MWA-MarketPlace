@@ -16,6 +16,7 @@ import { PostupdateComponent } from '../postupdate/postupdate.component';
 import { PostsComponent } from '../posts/posts.component';
 import { PostsDetailComponent } from '../posts/posts.details.component';
 import { LogoutComponent } from '../admin-module/logout/logout.component';
+import { IsLoggedInGuard } from '../guards/is-logged-in.guard';
 
 
 
@@ -26,21 +27,21 @@ import { LogoutComponent } from '../admin-module/logout/logout.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild([
-      { path: 'user', component: UserNavComponent },
+      { path: 'user', component: UserNavComponent, canActivate: [IsLoggedInGuard] },
       {
-        path: 'user', component: UserNavComponent,
+        path: 'user', component: UserNavComponent, canActivate: [IsLoggedInGuard],
         children: [
           { path: 'postcreate', component: PostcreateComponent },
           { path: 'posts', component: PostsComponent },
           { path: 'logout', component: LogoutComponent }
         ]
       },
-      { path: 'posts/:id', component: PostsDetailComponent },
-      { path: 'postupdate/:id', component: PostupdateComponent },
+      { path: 'posts/:id', component: PostsDetailComponent, canActivate: [IsLoggedInGuard] },
+      { path: 'postupdate/:id', component: PostupdateComponent, canActivate: [IsLoggedInGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login/forgetPassword', component: ForgetPasswordComponent },
-      { path: 'verifyUser', component: VerifyUserComponent, canActivate: [UserVerificationGuard] }
+      { path: 'verifyUser', component: VerifyUserComponent, canActivate: [UserVerificationGuard, IsLoggedInGuard] }
     ]),
     LayoutModule,
     MatToolbarModule,
