@@ -18,7 +18,7 @@ export class PostsComponent implements OnInit {
   dataSource ;
   isSelected = false;
   displayedColumns: string[] = ['image_urls', 'title', 'description', 'price', 'user_name', 'condition', "actions"];
-  userId;
+  userId = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // selectedPost:Post = new Post();
 
@@ -30,7 +30,9 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     let userObj = JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
+    if(userObj != null){
     this.userId = userObj["_id"];
+    }
     this.initializePostList();
   }
 

@@ -5,7 +5,7 @@ import { Post } from '../entities/post';
 import { Router, ActivatedRoute } from '../../../node_modules/@angular/router';
 
 @Component({
-  selector: 'app-posts',
+  selector: 'app-detailposts',
   templateUrl: './posts.detail.component.html',
   styleUrls: ['./post.details.component.css']
 })

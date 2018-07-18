@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsComponent } from '../posts/posts.component';
+import { PostsDetailComponent } from '../posts/posts.details.component';
 
 @Component({
   selector: 'app-landing-page',

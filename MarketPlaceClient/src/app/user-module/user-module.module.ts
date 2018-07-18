@@ -39,7 +39,7 @@ import { AuthInterceptor } from '../interceptors/AuthInterceptor';
           { path: 'logout', component: LogoutComponent }
         ]
       },
-      { path: 'posts/:id', component: PostsDetailComponent, canActivate: [UserComponentsGuard] },
+      { path: 'posts/:id', component: PostsDetailComponent },
       { path: 'postupdate/:id', component: PostupdateComponent, canActivate: [UserComponentsGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
