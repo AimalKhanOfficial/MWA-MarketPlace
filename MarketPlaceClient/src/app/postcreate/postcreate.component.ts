@@ -52,12 +52,9 @@ export class PostcreateComponent {
   }
 
   onSubmit() {
-    console.log("this.myForm.value.userData");
 
     let userObj = JSON.parse(sessionStorage.getItem("loggedInUserDetails"));
 
-    //userObj.location[0].coorinates[0]
-    console.log(userObj);
     var obj = {
       "title": this.myForm.value.title, "price": this.myForm.value.price,
       "condition": this.myForm.value.condition, "category": { "key": this.myForm.value.category, "value": this.categories.filter(x => x.key == this.myForm.value.category)[0].value },
