@@ -10,6 +10,7 @@ export class UsersService {
   getAllUsers(callback) {
     this.httpService.findAllUsers().subscribe(list => {
       if (list !== null) {
+        console.log("getAllUsers", list);
         return callback(null, list.json());
       } else {
         return callback("Not Found", null);

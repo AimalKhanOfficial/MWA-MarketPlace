@@ -12,6 +12,7 @@ export class PostListService {
     getAllPosts(callback) {
         this.httpService.findAllPosts().subscribe(list => {
             if (list !== null) {
+                console.log(list);
                 return callback(null, list.json());
             } else {
                 return callback("Not Found", null);
@@ -21,6 +22,7 @@ export class PostListService {
     getAllAdminPosts(callback) {
         this.httpService.findAllAdminPosts().subscribe(list => {
             if (list !== null) {
+                console.log(list);
                 return callback(null, list.json());
             } else {
                 return callback("Not Found", null);

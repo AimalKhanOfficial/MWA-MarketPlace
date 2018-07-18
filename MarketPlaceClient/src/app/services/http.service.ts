@@ -10,7 +10,7 @@ export class HttpService {
 
     private url = 'http://localhost:3000/api';
 
-    constructor(public http: HttpClient) {
+    constructor(public http: Http) {
     }
 
     findAllPosts(): Observable<any> {
