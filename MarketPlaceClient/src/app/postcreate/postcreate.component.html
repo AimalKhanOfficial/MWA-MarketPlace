@@ -1,3 +1,5 @@
+<br/>
+
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="post-form">
 
   <mat-form-field class="example-full-width">
@@ -31,13 +33,11 @@
     <a (click)="onUpload()" mat-button>Upload!</a>{{uploadStatus}}
   </div>
 
-  <div>
-    <label>Item is: </label>
-    <mat-radio-group formControlName="is_New">
-      <mat-radio-button value="1">New</mat-radio-button>
-      <mat-radio-button value="2">Used</mat-radio-button>
-    </mat-radio-group>
-  </div>
+
+  <mat-radio-group formControlName="is_New">
+    <mat-radio-button value="1">New</mat-radio-button>
+    <mat-radio-button value="2">Used</mat-radio-button>
+  </mat-radio-group>
 
   <input type="text" formControlName="myvalidator" style="display: none" />
 
