@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PostService } from '../services/PostService';
 import { Fileupload } from '../services/Fileupload';
-
+import {Router} from '@angular/router'
 
 import {
   FormGroup,
@@ -20,14 +20,14 @@ import { map } from 'rxjs/operators';
 })
 export class PostcreateComponent {
   myForm: FormGroup;
-  conditions = [{ key: 1, value: 'New' }, { key: 2, value: 'Used' }];
+  conditions = [{ key: 1, value: 'Excelent' }, { key: 2, value: 'Good' }, { key: 3, value: 'Fair' }];
   categories = [{ key: 1, value: 'cars' }, { key: 2, value: 'devices' }];
   //status 1-not approved 2-available 3-sold
   filesToUpload: Array<File>;
   uploadStatus;
   newImagesNames: String[] = [];
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload) {
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private fileupload: Fileupload,private router:Router) {
 
 
     this.myForm = formBuilder.group({
@@ -76,6 +76,7 @@ export class PostcreateComponent {
     this.postService.addPost(obj).then((data) => {
 
       console.log(data)
+      this.router.navigate(['/user/posts']);
 
     }).catch((err) => {
 
