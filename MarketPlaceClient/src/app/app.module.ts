@@ -118,7 +118,7 @@ const My_Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: [PostsComponent, PostsDetailComponent, ProfileupdateComponent, LandingPageComponent],
+  declarations: [PostsComponent, PostsDetailComponent, LandingPageComponent],
   imports: [BrowserAnimationsModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule.forRoot(My_Routes), MatPaginatorModule, MatCardModule]
 })
 export class DemoMaterialModule { }
@@ -127,7 +127,8 @@ export class DemoMaterialModule { }
   declarations: [
     AppComponent,
     PostcreateComponent,
-    PostupdateComponent
+    PostupdateComponent,
+    ProfileupdateComponent
   ],
   imports: [
     ChartModule,

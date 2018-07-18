@@ -56,6 +56,7 @@ import 'hammerjs';
 import { MainAdminComponent } from './main-admin/main-admin.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { LogoutComponent } from './logout/logout.component';
+import { IsLoggedInGuard } from '../guards/is-logged-in.guard';
 
 @NgModule({
   exports: [
@@ -109,7 +110,7 @@ export class DemoMaterialModule { }
     RouterModule.forChild([
 
       {
-        path: 'admin', component: MainAdminComponent,
+        path: 'admin', component: MainAdminComponent, canActivate : [IsLoggedInGuard],
         children: [
           { path: 'users', component: UsersComponent },
           { path: 'approvePosts', component: ApprovePostsComponent },
